@@ -375,8 +375,8 @@
 
   <link href="#rfc.toc" rel="Contents"/>
 <link href="#rfc.section.1" rel="Chapter" title="1 Introduction"/>
-<link href="#rfc.section.2" rel="Chapter" title="2 Manifest Requirements"/>
-<link href="#rfc.section.3" rel="Chapter" title="3 Manifest Use Cases"/>
+<link href="#rfc.section.2" rel="Chapter" title="2 A Minimalist Picture"/>
+<link href="#rfc.section.3" rel="Chapter" title="3 Possible Use Cases"/>
 <link href="#rfc.section.4" rel="Chapter" title="4 Security Considerations"/>
 <link href="#rfc.authors" rel="Chapter"/>
 
@@ -387,8 +387,8 @@
   <meta name="dct.creator" content="Tschudin, C. and C. Wood" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-wood-icnrg-manifestrequirements" />
   <meta name="dct.issued" scheme="ISO8601" content="2015-9-09" />
-  <meta name="dct.abstract" content="TODO" />
-  <meta name="description" content="TODO" />
+  <meta name="dct.abstract" content="The definition of an ICN manifest is defined, and a catalog of motivating use cases is presented." />
+  <meta name="description" content="The definition of an ICN manifest is defined, and a catalog of motivating use cases is presented." />
 
 </head>
 
@@ -428,7 +428,7 @@
   <h1 id="rfc.abstract">
   <a href="#rfc.abstract">Abstract</a>
 </h1>
-<p>TODO</p>
+<p>The definition of an ICN manifest is defined, and a catalog of motivating use cases is presented.</p>
 <h1 id="rfc.status">
   <a href="#rfc.status">Status of This Memo</a>
 </h1>
@@ -448,8 +448,8 @@
   <ul class="toc">
 
   	<li>1.   <a href="#rfc.section.1">Introduction</a></li>
-<li>2.   <a href="#rfc.section.2">Manifest Requirements</a></li>
-<li>3.   <a href="#rfc.section.3">Manifest Use Cases</a></li>
+<li>2.   <a href="#rfc.section.2">A Minimalist Picture</a></li>
+<li>3.   <a href="#rfc.section.3">Possible Use Cases</a></li>
 <li>4.   <a href="#rfc.section.4">Security Considerations</a></li>
 <li><a href="#rfc.authors">Authors' Addresses</a></li>
 
@@ -457,27 +457,63 @@
   </ul>
 
   <h1 id="rfc.section.1"><a href="#rfc.section.1">1.</a> <a href="#problems" id="problems">Introduction</a></h1>
+<p id="rfc.section.1.p.1">The purpose of this document is to motivate the design of ICN manifests and illustrate several use cases in which they might be used. It is not intended to specify a standard design, nor is it meant to evaluate existing designs.  The goal is simply to present a set of (non-exhaustive) requirements that the ICN community can use when evaluating different manifest proposals.</p>
+<h1 id="rfc.section.2"><a href="#rfc.section.2">2.</a> <a href="#a-minimalist-picture" id="a-minimalist-picture">A Minimalist Picture</a></h1>
+<p id="rfc.section.2.p.1">A manifest is a index used to encode a large and possibly infinite stream of data. In most cases, this stream is static and finite, meaning that the manifest simply encodes a large Content Object. Logically, a manifest may be perceived as a collection of pointers to other Content Objects and some additional metadata (TBD), as shown below.</p>
+<div id="rfc.figure.1"/>
+<div id="sample-manifest"/>
+<pre>
++---------------+
+| TYPE=MANIFEST |
+|---------------|
+|   metadata    |
+|---------------|
+|   Pointer 1   | ==&gt; +--------------+
+|               |     | TYPE=CONTENT |
+|               |     |   &lt;payload&gt;  |
+|               |     +--------------+
+|   Pointer 2   | ==&gt; +--------------+
+|               |     | TYPE=CONTENT |
+|               |     |   &lt;payload&gt;  |
+|               |     +--------------+
+|   Pointer 3   | ==&gt; +---------------+
++---------------+     | TYPE=MANIFEST |
+                      |---------------|
+                      |   Pointer 1   | ==&gt; +--------------+
+                      +---------------+     | TYPE=CONTENT |
+                                            |   &lt;payload&gt;  |
+                                            +--------------+
+</pre>
+<p class="figure">Figure 1: A representation of an ICN manifest.</p>
+<p id="rfc.section.2.p.2">Details about the type and encoding of metadata, the role and usage of Content Object pointers, and the types of data that can be represented by a Manifest are an ongoing design challenges.</p>
+<h1 id="rfc.section.3"><a href="#rfc.section.3">3.</a> <a href="#possible-use-cases" id="possible-use-cases">Possible Use Cases</a></h1>
+<p id="rfc.section.3.p.1">In this section we enumerate possible use cases that can be addressed by Manifests.  This list is not exhaustive, and is open to modification and extension from the community.</p>
 <p/>
 
 <ul>
-  <li>R-1: mere metadata envelope (data embedding)</li>
-  <li>R-2: direct links</li>
-  <li>R-3: indirect links</li>
-  <li>R-4: double/triple etc indirect links</li>
-  <li>R-5: open-ended data streams (pointing to data not existing yet)</li>
-  <li>R-6: get rid of chunk numbers (if one wishes), or exploit them for compact generation of route prefixes</li>
-  <li>R-7: named as well as name-less objects</li>
-  <li>R-8: sparse files</li>
-  <li>R-9: compression (blocks of zeros)</li>
-  <li>R-10: flag the use of encrypted data, encrypted manifests</li>
-  <li>R-11: use manifests as thunks in NFN</li>
-  <li>R-12: attach read-access-info to data (decryption key or method how to obtain the key)</li>
-  <li>R-13: alternate sources for a data block (more than one routing hint)</li>
+  <li>UseCase-1: Store only Content Object metadata (data embedding)</li>
+  <li>UseCase-2: Store direct links to Content Object (chunks).</li>
+  <li>UseCase-3: Store indirect links to Content Object (chunks), e.g., other manifests.</li>
+  <li>UseCase-5: Encode open-ended data streams (i.e., manifests may point to data not yet in existence)</li>
+  <li>UseCase-6: Support named and nameless Content Objects.</li>
+  <li>UseCase-7: Efficiently encode sparse Content Object files, with possible compression.</li>
+  <li>UseCase-8: Encapsulate (and indicate the presence of) encrypted data.</li>
+  <li>UseCase-9: Encode read-access information (e.g., decryption keys or metadata about how to get these keys).</li>
+  <li>UseCase-10: Provide alternate sources for a Content Object data blocks (i.e., give more than one routing hint).</li>
+  <li>UseCase-11: Sever as thunks in NFN.</li>
+  <li>UseCase-12: Describe the namespace of a particular Content Object.</li>
+  <li>UseCase-13: Store authenticated denial namespace descriptions (see above).</li>
+  <li>UseCase-14: Encode different traversal strategies for visiting Content Object pointers contained in a Manifest.</li>
+  <li>UseCase-15: Encode parallel forks (file resource forks or property lists associated with a Content Object).</li>
+  <li>UseCase-16: Support Content Object personalization and internationalization.</li>
+  <li>UseCase-17: Group related data together (e.g., for Web page content).</li>
+  <li>UseCase-18: Provide transport-layer information.</li>
+  <li>UseCase-19: Facilitate Content Object, service, or entity discovery.</li>
+  <li>UseCase-20: Enable content deletion in routers/forwarders.</li>
+  <li>UseCase-21: Embed authentication key information (e.g., key catalogs).</li>
 </ul>
-<h1 id="rfc.section.2"><a href="#rfc.section.2">2.</a> <a href="#manifest-requirements" id="manifest-requirements">Manifest Requirements</a></h1>
-<h1 id="rfc.section.3"><a href="#rfc.section.3">3.</a> <a href="#manifest-use-cases" id="manifest-use-cases">Manifest Use Cases</a></h1>
 <h1 id="rfc.section.4"><a href="#rfc.section.4">4.</a> <a href="#security-considerations" id="security-considerations">Security Considerations</a></h1>
-<p id="rfc.section.4.p.1">yes</p>
+<p id="rfc.section.4.p.1">TODO.</p>
 <h1 id="rfc.authors">
   <a href="#rfc.authors">Authors' Addresses</a>
 </h1>
