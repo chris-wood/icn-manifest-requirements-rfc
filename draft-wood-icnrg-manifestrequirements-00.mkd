@@ -1,0 +1,156 @@
+---
+title: ICN Manifest Requirements and Use Cases
+abbrev: ICN-LLC
+docname: draft-wood-icnrg-manifestrequirements
+date: 2015-09-09
+category: info
+
+ipr: trust200902
+area: General
+workgroup: ICNRG Working Group
+keyword: Internet-Draft
+
+stand_alone: yes
+pi: [toc, sortrefs, symrefs]
+
+author:
+ -
+    ins: C. Tschudin
+    name: Christian Tschudin
+    organization: University of Basel
+    email: christian.tschudin@unibas.ch
+ -
+    ins: C. A. Wood
+    name: Christopher A. Wood
+    org: PARC
+    email: cwood@parc.com
+
+normative:
+---  RFC2119:
+---  RFC3986:
+---  RFC4086:
+---  RFC4648:
+
+informative:
+---  RFC5389:
+---  I-D.ietf-behave-turn:
+---  STUNT:
+---    target: http://deusty.blogspot.com/2007/09/stunt-out-of-band-channels.html
+---    title: STUNT & out-of-band channels
+---    author:
+---      name: Robbie Hanson
+---      ins: R. Hanson
+---    date: 2007-09-17
+---  I-D.meye* UseCase-xmpp-e2e-encryption:
+---  I-D.ietf-xmpp-3920bis:
+
+--- abstract
+
+The definition of an ICN manifest is defined, and a catalog of motivating use
+cases is presented.
+
+--- middle
+
+Introduction        {#problems}
+============
+
+The purpose of this document is to motivate the design of ICN manifests and
+illustrate several use cases in which they might be used. It is not intended
+to specify a standard design, nor is it meant to evaluate existing designs.
+The goal is simply to present a set of (non-exhaustive) requirements that the ICN
+community can use when evaluating different manifest proposals.
+
+A Minimalist Picture
+====================
+
+A manifest is a index used to encode a large and possibly infinite stream of
+data. In most cases, this stream is static and finite, meaning that the manifest
+simply encodes a large Content Object. Logically, a manifest may be perceived as
+a collection of pointers to other Content Objects and some additional metadata (TBD),
+as shown below.
+
+~~~
++---------------+
+| TYPE=MANIFEST |
+|---------------|
+|   metadata    |
+|---------------|
+|   Pointer 1   | ==> +--------------+
+|               |     | TYPE=CONTENT |
+|               |     |   <payload>  |
+|               |     +--------------+
+|   Pointer 2   | ==> +--------------+
+|               |     | TYPE=CONTENT |
+|               |     |   <payload>  |
+|               |     +--------------+
+|   Pointer 3   | ==> +---------------+
++---------------+     | TYPE=MANIFEST |
+                      |---------------|
+                      |   Pointer 1   | ==> +--------------+
+                      +---------------+     | TYPE=CONTENT |
+                                            |   <payload>  |
+                                            +--------------+
+~~~
+{: #sample-manifest title="A representation of an ICN manifest."}
+
+Details about the type and encoding of metadata, the role and usage of Content
+Object pointers, and the types of data that can be represented by a Manifest are
+an ongoing design challenges.
+
+Possible Use Cases
+==================
+
+In this section we enumerate possible use cases that can be addressed by Manifests.
+This list is not exhaustive, and is open to modification and extension from the
+community.
+
+* UseCase-1: Store only Content Object metadata (data embedding)
+
+* UseCase-2: Store direct links to Content Object (chunks).
+
+* UseCase-3: Store indirect links to Content Object (chunks), e.g., other manifests.
+
+* UseCase-5: Encode open-ended data streams (i.e., manifests may point to data not yet in existence)
+
+* UseCase-6: Support named and nameless Content Objects.
+
+* UseCase-7: Efficiently encode sparse Content Object files, with possible compression.
+
+* UseCase-8: Encapsulate (and indicate the presence of) encrypted data.
+
+* UseCase-9: Encode read-access information (e.g., decryption keys or metadata about
+how to get these keys).
+
+* UseCase-10: Provide alternate sources for a Content Object data blocks (i.e.,
+give more than one routing hint).
+
+* UseCase-11: Sever as thunks in NFN.
+
+* UseCase-12: Describe the namespace of a particular Content Object.
+
+* UseCase-13: Store authenticated denial namespace descriptions (see above).
+
+* UseCase-14: Encode different traversal strategies for visiting Content Object pointers
+contained in a Manifest.
+
+* UseCase-15: Encode parallel forks (file resource forks or property lists associated
+with a Content Object).
+
+* UseCase-16: Support Content Object personalization and internationalization.
+
+* UseCase-17: Group related data together (e.g., for Web page content).
+
+* UseCase-18: Provide transport-layer information.
+
+* UseCase-19: Facilitate Content Object, service, or entity discovery.
+
+* UseCase-20: Enable content deletion in routers/forwarders.
+
+* UseCase-21: Embed authentication key information (e.g., key catalogs).
+
+Security Considerations
+=======================
+
+TODO.
+
+--- back

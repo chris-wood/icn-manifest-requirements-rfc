@@ -1,0 +1,168 @@
+
+
+
+
+ICNRG Working Group                                          C. Tschudin
+Internet-Draft                                       University of Basel
+Intended status: Informational                                   C. Wood
+Expires: March 12, 2016                                             PARC
+                                                      September 09, 2015
+
+
+                ICN Manifest Requirements and Use Cases
+                 draft-wood-icnrg-manifestrequirements
+
+Abstract
+
+   TODO
+
+Status of This Memo
+
+   This Internet-Draft is submitted in full conformance with the
+   provisions of BCP 78 and BCP 79.
+
+   Internet-Drafts are working documents of the Internet Engineering
+   Task Force (IETF).  Note that other groups may also distribute
+   working documents as Internet-Drafts.  The list of current Internet-
+   Drafts is at http://datatracker.ietf.org/drafts/current/.
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+   This Internet-Draft will expire on March 12, 2016.
+
+Copyright Notice
+
+   Copyright (c) 2015 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
+
+   This document is subject to BCP 78 and the IETF Trust's Legal
+   Provisions Relating to IETF Documents
+   (http://trustee.ietf.org/license-info) in effect on the date of
+   publication of this document.  Please review these documents
+   carefully, as they describe your rights and restrictions with respect
+   to this document.  Code Components extracted from this document must
+   include Simplified BSD License text as described in Section 4.e of
+   the Trust Legal Provisions and are provided without warranty as
+   described in the Simplified BSD License.
+
+
+
+
+
+
+Tschudin & Wood          Expires March 12, 2016                 [Page 1]
+
+Internet-Draft                   ICN-LLC                  September 2015
+
+
+Table of Contents
+
+   1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
+   2.  Manifest Requirements . . . . . . . . . . . . . . . . . . . .   2
+   3.  Manifest Use Cases  . . . . . . . . . . . . . . . . . . . . .   2
+   4.  Security Considerations . . . . . . . . . . . . . . . . . . .   2
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   3
+
+1.  Introduction
+
+   o  R-1: mere metadata envelope (data embedding)
+
+   o  R-2: direct links
+
+   o  R-3: indirect links
+
+   o  R-4: double/triple etc indirect links
+
+   o  R-5: open-ended data streams (pointing to data not existing yet)
+
+   o  R-6: get rid of chunk numbers (if one wishes), or exploit them for
+      compact generation of route prefixes
+
+   o  R-7: named as well as name-less objects
+
+   o  R-8: sparse files
+
+   o  R-9: compression (blocks of zeros)
+
+   o  R-10: flag the use of encrypted data, encrypted manifests
+
+   o  R-11: use manifests as thunks in NFN
+
+   o  R-12: attach read-access-info to data (decryption key or method
+      how to obtain the key)
+
+   o  R-13: alternate sources for a data block (more than one routing
+      hint)
+
+2.  Manifest Requirements
+
+3.  Manifest Use Cases
+
+4.  Security Considerations
+
+   yes
+
+
+
+
+
+Tschudin & Wood          Expires March 12, 2016                 [Page 2]
+
+Internet-Draft                   ICN-LLC                  September 2015
+
+
+Authors' Addresses
+
+   Christian Tschudin
+   University of Basel
+
+   Email: christian.tschudin@unibas.ch
+
+
+   Christopher A. Wood
+   PARC
+
+   Email: cwood@parc.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Tschudin & Wood          Expires March 12, 2016                 [Page 3]
