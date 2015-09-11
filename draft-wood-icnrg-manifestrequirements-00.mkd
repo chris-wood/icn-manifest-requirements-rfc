@@ -91,7 +91,7 @@ as shown below.
                                             |   <payload>  |
                                             +--------------+
 ~~~
-{: #sample-manifest title="A representation of an ICN manifest."}
+{: #sample-manifest title="A minimalist representation of an ICN manifest."}
 
 Details about the type and encoding of metadata, the role and usage of Content
 Object pointers, and the types of data that can be represented by a Manifest are
@@ -152,9 +152,9 @@ with a Content Object).
 
 * UseCase-23: Turn the manifest data structure into a block chain (tamperproof open list of records)
 
-* UseCase-24: (decentralized) trusted timestamping
+* UseCase-24: (Decentralized) trusted timestamping
 
-* USeCAse-25: backend storage for a control versioning system, GitHub style
+* UseCase-25: Backend storage for a control versioning system, GitHub style
 
 Security Considerations
 =======================

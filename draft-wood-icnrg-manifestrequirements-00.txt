@@ -105,7 +105,7 @@ Table of Contents
                                                |   <payload>  |
                                                +--------------+
 
-              Figure 1: A representation of an ICN manifest.
+         Figure 1: A minimalist representation of an ICN manifest.
 
 
 
@@ -193,9 +193,9 @@ Internet-Draft                   ICN-LLC                  September 2015
    o  UseCase-23: Turn the manifest data structure into a block chain
       (tamperproof open list of records)
 
-   o  UseCase-24: (decentralized) trusted timestamping
+   o  UseCase-24: (Decentralized) trusted timestamping
 
-   o  USeCAse-25: backend storage for a control versioning system,
+   o  UseCase-25: Backend storage for a control versioning system,
       GitHub style
 
 4.  Security Considerations
