@@ -195,6 +195,9 @@ Internet-Draft                   ICN-LLC                  September 2015
 
    o  UseCase-24: (decentralized) trusted timestamping
 
+   o  USeCAse-25: backend storage for a control versioning system,
+      GitHub style
+
 4.  Security Considerations
 
    TODO.
@@ -211,9 +214,6 @@ Authors' Addresses
    PARC
 
    Email: cwood@parc.com
-
-
-
 
 
 

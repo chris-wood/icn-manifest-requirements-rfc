@@ -154,6 +154,8 @@ with a Content Object).
 
 * UseCase-24: (decentralized) trusted timestamping
 
+* USeCAse-25: backend storage for a control versioning system, GitHub style
+
 Security Considerations
 =======================
 
