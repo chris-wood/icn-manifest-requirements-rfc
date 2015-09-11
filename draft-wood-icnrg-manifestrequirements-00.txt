@@ -148,7 +148,9 @@ Internet-Draft                   ICN-LLC                  September 2015
    o  UseCase-10: Provide alternate sources for a Content Object data
       blocks (i.e., give more than one routing hint).
 
-   o  UseCase-11: Sever as thunks in NFN.
+   o  UseCase-11: Serve as thunks in Named Function Networking.  See
+      also UseCase-22 (database cursor), "next record" pointing to
+      results not yet computed.
 
    o  UseCase-12: Describe the namespace of a particular Content Object.
 
@@ -160,8 +162,6 @@ Internet-Draft                   ICN-LLC                  September 2015
 
    o  UseCase-15: Encode parallel forks (file resource forks or property
       lists associated with a Content Object).
-
-
 
 
 
@@ -186,6 +186,15 @@ Internet-Draft                   ICN-LLC                  September 2015
    o  UseCase-21: Embed authentication key information (e.g., key
       catalogs).
 
+   o  UseCase-22: Serve as database cursor i.e., for returning partial
+      results that contain pointers to the previous and next records,
+      for example.
+
+   o  UseCase-23: Turn the manifest data structure into a block chain
+      (tamperproof open list of records)
+
+   o  UseCase-24: (decentralized) trusted timestamping
+
 4.  Security Considerations
 
    TODO.
@@ -202,15 +211,6 @@ Authors' Addresses
    PARC
 
    Email: cwood@parc.com
-
-
-
-
-
-
-
-
-
 
 
 

@@ -124,7 +124,7 @@ how to get these keys).
 * UseCase-10: Provide alternate sources for a Content Object data blocks (i.e.,
 give more than one routing hint).
 
-* UseCase-11: Sever as thunks in NFN.
+* UseCase-11: Serve as thunks in Named Function Networking. See also UseCase-22 (database cursor), "next record" pointing to results not yet computed.
 
 * UseCase-12: Describe the namespace of a particular Content Object.
 
@@ -147,6 +147,12 @@ with a Content Object).
 * UseCase-20: Enable content deletion in routers/forwarders.
 
 * UseCase-21: Embed authentication key information (e.g., key catalogs).
+
+* UseCase-22: Serve as database cursor i.e., for returning partial results that contain pointers to the previous and next records, for example.
+
+* UseCase-23: Turn the manifest data structure into a block chain (tamperproof open list of records)
+
+* UseCase-24: (decentralized) trusted timestamping
 
 Security Considerations
 =======================

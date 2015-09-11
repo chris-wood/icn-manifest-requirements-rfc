@@ -1,6 +1,6 @@
 # Makefile
 
-FN=draft-tschudin-icnrg-llc-00
+FN=draft-wood-icnrg-manifestrequirements-00
 
 all: ${FN}.txt
 
