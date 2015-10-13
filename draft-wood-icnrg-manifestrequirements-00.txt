@@ -4,8 +4,10 @@
 
 ICNRG Working Group                                          C. Tschudin
 Internet-Draft                                       University of Basel
-Intended status: Informational                                   C. Wood
-Expires: March 12, 2016                                             PARC
+Intended status: Informational                               C. Westphal
+Expires: March 12, 2016                                           Huawei
+                                                                 C. Wood
+                                                                    PARC
                                                       September 09, 2015
 
 
@@ -51,9 +53,7 @@ Copyright Notice
 
 
 
-
-
-Tschudin & Wood          Expires March 12, 2016                 [Page 1]
+Tschudin, et al.         Expires March 12, 2016                 [Page 1]
 
 Internet-Draft                   ICN-LLC                  September 2015
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Tschudin & Wood          Expires March 12, 2016                 [Page 2]
+Tschudin, et al.         Expires March 12, 2016                 [Page 2]
 
 Internet-Draft                   ICN-LLC                  September 2015
 
@@ -165,7 +165,7 @@ Internet-Draft                   ICN-LLC                  September 2015
 
 
 
-Tschudin & Wood          Expires March 12, 2016                 [Page 3]
+Tschudin, et al.         Expires March 12, 2016                 [Page 3]
 
 Internet-Draft                   ICN-LLC                  September 2015
 
@@ -221,7 +221,7 @@ Internet-Draft                   ICN-LLC                  September 2015
 
 
 
-Tschudin & Wood          Expires March 12, 2016                 [Page 4]
+Tschudin, et al.         Expires March 12, 2016                 [Page 4]
 
 Internet-Draft                   ICN-LLC                  September 2015
 
@@ -277,7 +277,7 @@ Internet-Draft                   ICN-LLC                  September 2015
 
 
 
-Tschudin & Wood          Expires March 12, 2016                 [Page 5]
+Tschudin, et al.         Expires March 12, 2016                 [Page 5]
 
 Internet-Draft                   ICN-LLC                  September 2015
 
@@ -315,6 +315,12 @@ Authors' Addresses
    Email: christian.tschudin@unibas.ch
 
 
+   Cerdic Westphal
+   Huawei
+
+   Email: Cedric.Westphal@huawei.com
+
+
    Christopher A. Wood
    PARC
 
@@ -327,10 +333,4 @@ Authors' Addresses
 
 
 
-
-
-
-
-
-
-Tschudin & Wood          Expires March 12, 2016                 [Page 6]
+Tschudin, et al.         Expires March 12, 2016                 [Page 6]

@@ -20,13 +20,12 @@ author:
     organization: University of Basel
     email: christian.tschudin@unibas.ch
  -
-    ins: C. A. Wood
-    name: Christopher A. Wood
-    org: PARC
-    email: cwood@parc.com
-
+    ins: C. Westphal
+    name: Cerdic Westphal
+    org: Huawei
+    email: Cedric.Westphal@huawei.com
  -
-   ins: C. 
+   ins: C. A. Wood
    name: Christopher A. Wood
    org: PARC
    email: cwood@parc.com
