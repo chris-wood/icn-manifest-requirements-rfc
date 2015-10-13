@@ -25,6 +25,12 @@ author:
     org: PARC
     email: cwood@parc.com
 
+ -
+   ins: C. 
+   name: Christopher A. Wood
+   org: PARC
+   email: cwood@parc.com
+
 normative:
 ---  RFC2119:
 ---  RFC3986:
@@ -65,7 +71,7 @@ A Minimalist Picture
 
 A manifest is a index used to encode a large and possibly infinite stream of
 data. In most cases, this stream is static and finite, meaning that the manifest
-simply encodes a large Content Object. Logically, a manifest may be perceived as
+simply encodes a large piece of contiguous data. Logically, a manifest may be perceived as
 a collection of pointers to other Content Objects and some additional metadata (TBD),
 as shown below.
 
@@ -97,6 +103,25 @@ Details about the type and encoding of metadata, the role and usage of Content
 Object pointers, and the types of data that can be represented by a Manifest are
 an ongoing design challenges.
 
+Manifest Requirements
+=====================
+
+In this section we enumerate the functional requirements for Manifests.
+
+1. A manifest shall be a type of Content Object.
+2. The wire format representation of a manifest shall be able to be interpreted by a forwarder without needing to parse the entire Content Object.
+3. A manifest shall be able to encode a large and (not necessarily) contiguous piece of data that is beyond the size limitations of a Content Object.
+4. A manifest payload may contain both application data and pointers to other Content Objects.
+5. For each pointer in a manifest, the type of Content Object to which the pointer refers shall be explicitly listed.
+6. A manifest may contain pointers to other Content Objects which are themselves manifests.
+7. A manifest shall contain an optional reference to a structured decryption metadata (SDM) access control structure.
+8. The information in a manifest SDM shall apply to (a) any application data in the manifest and (b) any pointers to child Content Objects.
+9. A manifest shall encode default metadata about the encoded application data and child Content Objects, including: total size (in bytes).
+10. A manifest shall contain an optional reference to a Content Object which contains application-specific metadata.
+11. A manifest shall support named and nameless Content Objects.
+12. A manifest shall be able to carry cleartext and ciphertext payloads.
+13. A manifest shall encapsulate and indicate the presence of encrypted data.
+
 Possible Use Cases
 ==================
 
@@ -104,57 +129,30 @@ In this section we enumerate possible use cases that can be addressed by Manifes
 This list is not exhaustive, and is open to modification and extension from the
 community.
 
-* UseCase-1: Store only Content Object metadata (data embedding)
-
-* UseCase-2: Store direct links to Content Object (chunks).
-
-* UseCase-3: Store indirect links to Content Object (chunks), e.g., other manifests.
-
-* UseCase-5: Encode open-ended data streams (i.e., manifests may point to data not yet in existence)
-
-* UseCase-6: Support named and nameless Content Objects.
-
-* UseCase-7: Efficiently encode sparse Content Object files, with possible compression.
-
-* UseCase-8: Encapsulate (and indicate the presence of) encrypted data.
-
-* UseCase-9: Encode read-access information (e.g., decryption keys or metadata about
-how to get these keys).
-
-* UseCase-10: Provide alternate sources for a Content Object data blocks (i.e.,
-give more than one routing hint).
-
-* UseCase-11: Serve as thunks in Named Function Networking. See also UseCase-22 (database cursor), "next record" pointing to results not yet computed.
-
-* UseCase-12: Describe the namespace of a particular Content Object.
-
-* UseCase-13: Store authenticated denial namespace descriptions (see above).
-
-* UseCase-14: Encode different traversal strategies for visiting Content Object pointers
-contained in a Manifest.
-
-* UseCase-15: Encode parallel forks (file resource forks or property lists associated
-with a Content Object).
-
-* UseCase-16: Support Content Object personalization and internationalization.
-
-* UseCase-17: Group related data together (e.g., for Web page content).
-
-* UseCase-18: Provide transport-layer information.
-
-* UseCase-19: Facilitate Content Object, service, or entity discovery.
-
-* UseCase-20: Enable content deletion in routers/forwarders.
-
-* UseCase-21: Embed authentication key information (e.g., key catalogs).
-
-* UseCase-22: Serve as database cursor i.e., for returning partial results that contain pointers to the previous and next records, for example.
-
-* UseCase-23: Turn the manifest data structure into a block chain (tamperproof open list of records)
-
-* UseCase-24: (Decentralized) trusted timestamping
-
-* UseCase-25: Backend storage for a control versioning system, GitHub style
+| ID | Network Use Cases        | Application Use Cases       |
+| 1 | | |
+| 2 | Amortize verification cost of chunks | Amortize verification cost of chunks |
+| 3 | Support network-layer prefetching |  |
+| 4 | | Store only Content Object metadata |
+| 5 | Support named and nameless Content Objects | Support named and nameless Content Objects |
+| 6 | | Efficiently encode sparse Content Object files with possible compression |
+| 7 | Provide alternate sources for a Content Object data blocks (i.e., give more than one routing hint) | |
+| 8 | Serve as thunks in Named Function Networking | Serve as thunks in Named Function Networking |
+| 9 | Describe the namespace of a particular Content Object | Describe the namespace of a particular Content Object |
+| 10 | Store authenticated denial namespace descriptions (see above) | Store authenticated denial namespace descriptions (see above) |
+| 11 | | Encode different traversal strategies for visiting Content Object pointers contained in a Manifest |
+| 12 | | Encode parallel forks (file resource forks or property lists associated with a Content Object) |
+| 13 | Support Content Object personalization and internationalization | Support Content Object personalization and internationalization |
+| 14 | | Group related data together (e.g., for Web page content) |
+| 15 | Provide transport-layer information | |
+| 16 | Facilitate Content Object, service, or entity discovery | |
+| 17 | Enable content deletion in routers/forwarders | |
+| 18 | | Embed authentication key information (e.g., key catalogs) |
+| 19 | | Serve as database cursor |
+| 20 | | Turn the manifest data structure into a block chain (tamperproof open list of records) |
+| 21 | | (Decentralized) trusted timestamping |
+| 22 | | Backend storage for a control versioning system, GitHub style |
+| 23 | | Encode open-ended data streams (i.e., manifests may point to data not yet in existence) |
 
 Security Considerations
 =======================
