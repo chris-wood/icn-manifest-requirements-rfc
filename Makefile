@@ -1,6 +1,6 @@
 # Makefile
 
-FN=draft-wood-icnrg-manifestrequirements-00
+FN=draft-wood-icnrg-manifestusecases-00
 
 all: ${FN}.txt ${FN}.html
 
