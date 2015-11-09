@@ -150,18 +150,18 @@ Internet-Draft             ICNManifestUseCases             November 2015
    +----+------------------------------+-------------------------------+
    | ID | Network Use Cases            | Application Use Cases         |
    +----+------------------------------+-------------------------------+
-   | 1  |                              |                               |
-   |    |                              |                               |
-   | 2  | Amortize verification cost   | Amortize verification cost of |
+   | 1  | Amortize verification cost   | Amortize verification cost of |
    |    | of chunks                    | chunks                        |
    |    |                              |                               |
-   | 3  | Support network-layer        |                               |
+   | 2  | Support network-layer        |                               |
    |    | prefetching                  |                               |
    |    |                              |                               |
-   | 4  |                              | Store only Content Object     |
+   | 3  |                              | Store only Content Object     |
    |    |                              | metadata                      |
    |    |                              |                               |
-   | 5  | Support named and nameless   | Support named and nameless    |
+   | 4  | Support named and nameless   | Support named and nameless    |
+   |    | Content Objects              | Content Objects               |
+   |    |                              |                               |
 
 
 
@@ -170,54 +170,54 @@ Tschudin, et al.          Expires May 12, 2016                  [Page 3]
 Internet-Draft             ICNManifestUseCases             November 2015
 
 
-   |    | Content Objects              | Content Objects               |
-   |    |                              |                               |
-   | 6  |                              | Efficiently encode sparse     |
+   | 5  |                              | Efficiently encode sparse     |
    |    |                              | Content Object files with     |
    |    |                              | possible compression          |
    |    |                              |                               |
-   | 7  | Provide alternate sources    |                               |
+   | 6  | Provide alternate sources    |                               |
    |    | for a Content Object data    |                               |
    |    | blocks (i.e., give more than |                               |
    |    | one routing hint)            |                               |
    |    |                              |                               |
-   | 8  | Serve as thunks in Named     | Serve as thunks in Named      |
+   | 7  | Serve as thunks in Named     | Serve as thunks in Named      |
    |    | Function Networking          | Function Networking           |
    |    |                              |                               |
-   | 9  | Describe the namespace of a  | Describe the namespace of a   |
+   | 8  | Describe the namespace of a  | Describe the namespace of a   |
    |    | particular Content Object    | particular Content Object     |
    |    |                              |                               |
-   | 10 | Store authenticated denial   | Store authenticated denial    |
+   | 9  | Store authenticated denial   | Store authenticated denial    |
    |    | namespace descriptions (see  | namespace descriptions (see   |
    |    | above)                       | above)                        |
    |    |                              |                               |
-   | 11 |                              | Encode different traversal    |
+   | 10 |                              | Encode different traversal    |
    |    |                              | strategies for visiting       |
    |    |                              | Content Object pointers       |
    |    |                              | contained in a Manifest       |
    |    |                              |                               |
-   | 12 |                              | Encode parallel forks (file   |
+   | 11 |                              | Encode parallel forks (file   |
    |    |                              | resource forks or property    |
    |    |                              | lists associated with a       |
    |    |                              | Content Object)               |
    |    |                              |                               |
-   | 13 | Support Content Object       | Support Content Object        |
+   | 12 | Support Content Object       | Support Content Object        |
    |    | personalization and          | personalization and           |
    |    | internationalization         | internationalization          |
    |    |                              |                               |
-   | 14 |                              | Group related data together   |
+   | 13 |                              | Group related data together   |
    |    |                              | (e.g., for Web page content)  |
    |    |                              |                               |
-   | 15 | Provide transport-layer      |                               |
-   |    | information                  |                               |
+   | 14 | Provide transport-layer      |                               |
+   |    | information or aid transport |                               |
+   |    | protocols                    |                               |
    |    |                              |                               |
-   | 16 | Facilitate Content Object,   |                               |
+   | 15 | Facilitate Content Object,   |                               |
    |    | service, or entity discovery |                               |
    |    |                              |                               |
-   | 17 | Enable content deletion in   |                               |
+   | 16 | Enable content deletion in   |                               |
    |    | routers/forwarders           |                               |
    |    |                              |                               |
-   | 18 |                              | Embed authentication key      |
+   | 17 |                              | Embed authentication key      |
+   |    |                              | information (e.g., key        |
 
 
 
@@ -226,24 +226,24 @@ Tschudin, et al.          Expires May 12, 2016                  [Page 4]
 Internet-Draft             ICNManifestUseCases             November 2015
 
 
-   |    |                              | information (e.g., key        |
    |    |                              | catalogs)                     |
    |    |                              |                               |
-   | 19 |                              | Serve as database cursor      |
+   | 18 |                              | Serve as a database cursor    |
    |    |                              |                               |
-   | 20 |                              | Turn the manifest data        |
+   | 19 |                              | Turn the manifest data        |
    |    |                              | structure into a block chain  |
    |    |                              | (tamperproof open list of     |
    |    |                              | records)                      |
    |    |                              |                               |
-   | 21 |                              | (Decentralized) trusted       |
-   |    |                              | timestamping                  |
+   | 20 |                              | Be used by or as a            |
+   |    |                              | (decentralized) trusted       |
+   |    |                              | timestamping service          |
    |    |                              |                               |
-   | 22 |                              | Backend storage for a control |
+   | 21 |                              | Backend storage for a control |
    |    |                              | versioning system, GitHub     |
    |    |                              | style                         |
    |    |                              |                               |
-   | 23 |                              | Encode open-ended data        |
+   | 22 |                              | Encode open-ended data        |
    |    |                              | streams (i.e., manifests may  |
    |    |                              | point to data not yet in      |
    |    |                              | existence)                    |

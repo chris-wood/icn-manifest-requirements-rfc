@@ -108,29 +108,28 @@ This list is not exhaustive, and is open to modification and extension from the
 community.
 
 | ID | Network Use Cases        | Application Use Cases       |
-| 1 | | |
-| 2 | Amortize verification cost of chunks | Amortize verification cost of chunks |
-| 3 | Support network-layer prefetching |  |
-| 4 | | Store only Content Object metadata |
-| 5 | Support named and nameless Content Objects | Support named and nameless Content Objects |
-| 6 | | Efficiently encode sparse Content Object files with possible compression |
-| 7 | Provide alternate sources for a Content Object data blocks (i.e., give more than one routing hint) | |
-| 8 | Serve as thunks in Named Function Networking | Serve as thunks in Named Function Networking |
-| 9 | Describe the namespace of a particular Content Object | Describe the namespace of a particular Content Object |
-| 10 | Store authenticated denial namespace descriptions (see above) | Store authenticated denial namespace descriptions (see above) |
-| 11 | | Encode different traversal strategies for visiting Content Object pointers contained in a Manifest |
-| 12 | | Encode parallel forks (file resource forks or property lists associated with a Content Object) |
-| 13 | Support Content Object personalization and internationalization | Support Content Object personalization and internationalization |
-| 14 | | Group related data together (e.g., for Web page content) |
-| 15 | Provide transport-layer information | |
-| 16 | Facilitate Content Object, service, or entity discovery | |
-| 17 | Enable content deletion in routers/forwarders | |
-| 18 | | Embed authentication key information (e.g., key catalogs) |
-| 19 | | Serve as database cursor |
-| 20 | | Turn the manifest data structure into a block chain (tamperproof open list of records) |
-| 21 | | (Decentralized) trusted timestamping |
-| 22 | | Backend storage for a control versioning system, GitHub style |
-| 23 | | Encode open-ended data streams (i.e., manifests may point to data not yet in existence) |
+| 1 | Amortize verification cost of chunks| Amortize verification cost of chunks|
+| 2 | Support network-layer prefetching |  |
+| 3 | | Store only Content Object metadata |
+| 4 | Support named and nameless Content Objects | Support named and nameless Content Objects |
+| 5 | | Efficiently encode sparse Content Object files with possible compression |
+| 6 | Provide alternate sources for a Content Object data blocks (i.e., give more than one routing hint) | |
+| 7 | Serve as thunks in Named Function Networking | Serve as thunks in Named Function Networking |
+| 8 | Describe the namespace of a particular Content Object | Describe the namespace of a particular Content Object |
+| 9 | Store authenticated denial namespace descriptions (see above) | Store authenticated denial namespace descriptions (see above) |
+| 10 | | Encode different traversal strategies for visiting Content Object pointers contained in a Manifest |
+| 11 | | Encode parallel forks (file resource forks or property lists associated with a Content Object) |
+| 12 | Support Content Object personalization and internationalization | Support Content Object personalization and internationalization |
+| 13 | | Group related data together (e.g., for Web page content) |
+| 14 | Provide transport-layer information or aid transport protocols | |
+| 15 | Facilitate Content Object, service, or entity discovery | |
+| 16 | Enable content deletion in routers/forwarders | |
+| 17 | | Embed authentication key information (e.g., key catalogs) |
+| 18 | | Serve as a database cursor |
+| 19 | | Turn the manifest data structure into a block chain (tamperproof open list of records) |
+| 20 | | Be used by or as a (decentralized) trusted timestamping service |
+| 21 | | Backend storage for a control versioning system, GitHub style |
+| 22 | | Encode open-ended data streams (i.e., manifests may point to data not yet in existence) |
 
 Security Considerations
 =======================

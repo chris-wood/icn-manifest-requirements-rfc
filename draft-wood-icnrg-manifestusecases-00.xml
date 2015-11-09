@@ -110,72 +110,69 @@ community.</t>
       <ttcol align='left'>Network Use Cases</ttcol>
       <ttcol align='left'>Application Use Cases</ttcol>
       <c>1</c>
-      <c>&#160;</c>
-      <c>&#160;</c>
+      <c>Amortize verification cost of chunks</c>
+      <c>Amortize verification cost of chunks</c>
       <c>2</c>
-      <c>Amortize verification cost of chunks</c>
-      <c>Amortize verification cost of chunks</c>
-      <c>3</c>
       <c>Support network-layer prefetching</c>
       <c>&#160;</c>
-      <c>4</c>
+      <c>3</c>
       <c>&#160;</c>
       <c>Store only Content Object metadata</c>
+      <c>4</c>
+      <c>Support named and nameless Content Objects</c>
+      <c>Support named and nameless Content Objects</c>
       <c>5</c>
-      <c>Support named and nameless Content Objects</c>
-      <c>Support named and nameless Content Objects</c>
-      <c>6</c>
       <c>&#160;</c>
       <c>Efficiently encode sparse Content Object files with possible compression</c>
-      <c>7</c>
+      <c>6</c>
       <c>Provide alternate sources for a Content Object data blocks (i.e., give more than one routing hint)</c>
       <c>&#160;</c>
+      <c>7</c>
+      <c>Serve as thunks in Named Function Networking</c>
+      <c>Serve as thunks in Named Function Networking</c>
       <c>8</c>
-      <c>Serve as thunks in Named Function Networking</c>
-      <c>Serve as thunks in Named Function Networking</c>
+      <c>Describe the namespace of a particular Content Object</c>
+      <c>Describe the namespace of a particular Content Object</c>
       <c>9</c>
-      <c>Describe the namespace of a particular Content Object</c>
-      <c>Describe the namespace of a particular Content Object</c>
+      <c>Store authenticated denial namespace descriptions (see above)</c>
+      <c>Store authenticated denial namespace descriptions (see above)</c>
       <c>10</c>
-      <c>Store authenticated denial namespace descriptions (see above)</c>
-      <c>Store authenticated denial namespace descriptions (see above)</c>
-      <c>11</c>
       <c>&#160;</c>
       <c>Encode different traversal strategies for visiting Content Object pointers contained in a Manifest</c>
-      <c>12</c>
+      <c>11</c>
       <c>&#160;</c>
       <c>Encode parallel forks (file resource forks or property lists associated with a Content Object)</c>
+      <c>12</c>
+      <c>Support Content Object personalization and internationalization</c>
+      <c>Support Content Object personalization and internationalization</c>
       <c>13</c>
-      <c>Support Content Object personalization and internationalization</c>
-      <c>Support Content Object personalization and internationalization</c>
-      <c>14</c>
       <c>&#160;</c>
       <c>Group related data together (e.g., for Web page content)</c>
-      <c>15</c>
-      <c>Provide transport-layer information</c>
+      <c>14</c>
+      <c>Provide transport-layer information or aid transport protocols</c>
       <c>&#160;</c>
-      <c>16</c>
+      <c>15</c>
       <c>Facilitate Content Object, service, or entity discovery</c>
       <c>&#160;</c>
-      <c>17</c>
+      <c>16</c>
       <c>Enable content deletion in routers/forwarders</c>
       <c>&#160;</c>
-      <c>18</c>
+      <c>17</c>
       <c>&#160;</c>
       <c>Embed authentication key information (e.g., key catalogs)</c>
+      <c>18</c>
+      <c>&#160;</c>
+      <c>Serve as a database cursor</c>
       <c>19</c>
       <c>&#160;</c>
-      <c>Serve as database cursor</c>
+      <c>Turn the manifest data structure into a block chain (tamperproof open list of records)</c>
       <c>20</c>
       <c>&#160;</c>
-      <c>Turn the manifest data structure into a block chain (tamperproof open list of records)</c>
+      <c>Be used by or as a (decentralized) trusted timestamping service</c>
       <c>21</c>
       <c>&#160;</c>
-      <c>(Decentralized) trusted timestamping</c>
-      <c>22</c>
-      <c>&#160;</c>
       <c>Backend storage for a control versioning system, GitHub style</c>
-      <c>23</c>
+      <c>22</c>
       <c>&#160;</c>
       <c>Encode open-ended data streams (i.e., manifests may point to data not yet in existence)</c>
 </texttable>
