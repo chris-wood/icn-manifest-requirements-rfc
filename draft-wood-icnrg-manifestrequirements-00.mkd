@@ -1,8 +1,8 @@
 ---
-title: ICN Manifest Requirements and Use Cases
-abbrev: ICN-LLC
-docname: draft-wood-icnrg-manifestrequirements
-date: 2015-09-09
+title: ICN Manifest Use Cases
+abbrev: ICNManifestUseCases
+docname: draft-wood-icnrg-icnmanifestusecases
+date: 2015-11-09
 category: info
 
 ipr: trust200902
@@ -51,28 +51,27 @@ informative:
 
 --- abstract
 
-The definition of an ICN manifest is defined, and a catalog of motivating use
-cases is presented.
+A catalog of motivating use cases for ICN Manifests is presented.
 
 --- middle
 
 Introduction        {#problems}
 ============
 
-The purpose of this document is to motivate the design of ICN manifests and
+The purpose of this document is to motivate the design of ICN Manifests and
 illustrate several use cases in which they might be used. It is not intended
 to specify a standard design, nor is it meant to evaluate existing designs.
-The goal is simply to present a set of (non-exhaustive) requirements that the ICN
-community can use when evaluating different manifest proposals.
+The goal is simply to present a set of (non-exhaustive) cases where ICN Manifests
+may prove useful for the "network" and "application" layer.
 
 A Minimalist Picture
 ====================
 
-A manifest is a index used to encode a large and possibly infinite stream of
-data. In most cases, this stream is static and finite, meaning that the manifest
-simply encodes a large piece of contiguous data. Logically, a manifest may be perceived as
-a collection of pointers to other Content Objects and some additional metadata (TBD),
-as shown below.
+A manifest is a index used to represent some stream of data. In most cases, this stream
+is static and finite, meaning that the manifest simply represents a piece of existing
+application data. Static CCNx Manifests, for example, are a particular type of Manifest
+that seek to achieve this goal. Logically, a manifest may be perceived as a collection
+of pointers to other Content Objects and some additional metadata (TBD), as shown below.
 
 ~~~
 +---------------+
@@ -98,33 +97,13 @@ as shown below.
 ~~~
 {: #sample-manifest title="A minimalist representation of an ICN manifest."}
 
-Details about the type and encoding of metadata, the role and usage of Content
-Object pointers, and the types of data that can be represented by a Manifest are
-an ongoing design challenges.
+Details about the type and encoding of metadata, the role and usage of Message
+pointers, and the types of data that can be represented by a Manifest are ongoing
+architectural and design challenges.
 
-Manifest Requirements
-=====================
+# Use Cases
 
-In this section we enumerate the functional requirements for Manifests.
-
-1. A manifest shall be a type of Content Object.
-2. The wire format representation of a manifest shall be able to be interpreted by a forwarder without needing to parse the entire Content Object.
-3. A manifest shall be able to encode a large and (not necessarily) contiguous piece of data that is beyond the size limitations of a Content Object.
-4. A manifest payload may contain both application data and pointers to other Content Objects.
-5. For each pointer in a manifest, the type of Content Object to which the pointer refers shall be explicitly listed.
-6. A manifest may contain pointers to other Content Objects which are themselves manifests.
-7. A manifest shall contain an optional reference to a structured decryption metadata (SDM) access control structure.
-8. The information in a manifest SDM shall apply to (a) any application data in the manifest and (b) any pointers to child Content Objects.
-9. A manifest shall encode default metadata about the encoded application data and child Content Objects, including: total size (in bytes).
-10. A manifest shall contain an optional reference to a Content Object which contains application-specific metadata.
-11. A manifest shall support named and nameless Content Objects.
-12. A manifest shall be able to carry cleartext and ciphertext payloads.
-13. A manifest shall encapsulate and indicate the presence of encrypted data.
-
-Possible Use Cases
-==================
-
-In this section we enumerate possible use cases that can be addressed by Manifests.
+In this section we enumerate possible use cases that could be addressed by Manifests.
 This list is not exhaustive, and is open to modification and extension from the
 community.
 
