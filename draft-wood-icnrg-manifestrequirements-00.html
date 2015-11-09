@@ -5,7 +5,7 @@
 <head profile="http://www.w3.org/2006/03/hcard http://dublincore.org/documents/2008/08/04/dc-html/">
   <meta http-equiv="Content-Type" content="text/html; charset=us-ascii" />
 
-  <title>ICN Manifest Requirements and Use Cases</title>
+  <title>ICN Manifest Use Cases</title>
 
   <style type="text/css" title="Xml2Rfc (sans serif)">
   /*<![CDATA[*/
@@ -376,20 +376,19 @@
   <link href="#rfc.toc" rel="Contents"/>
 <link href="#rfc.section.1" rel="Chapter" title="1 Introduction"/>
 <link href="#rfc.section.2" rel="Chapter" title="2 A Minimalist Picture"/>
-<link href="#rfc.section.3" rel="Chapter" title="3 Manifest Requirements"/>
-<link href="#rfc.section.4" rel="Chapter" title="4 Possible Use Cases"/>
-<link href="#rfc.section.5" rel="Chapter" title="5 Security Considerations"/>
+<link href="#rfc.section.3" rel="Chapter" title="3 Use Cases"/>
+<link href="#rfc.section.4" rel="Chapter" title="4 Security Considerations"/>
 <link href="#rfc.authors" rel="Chapter"/>
 
 
-  <meta name="generator" content="xml2rfc version 2.5.0 - http://tools.ietf.org/tools/xml2rfc" />
+  <meta name="generator" content="xml2rfc version 2.5.1 - http://tools.ietf.org/tools/xml2rfc" />
   <link rel="schema.dct" href="http://purl.org/dc/terms/" />
 
   <meta name="dct.creator" content="Tschudin, C., Westphal, C., and C. Wood" />
-  <meta name="dct.identifier" content="urn:ietf:id:draft-wood-icnrg-manifestrequirements" />
-  <meta name="dct.issued" scheme="ISO8601" content="2015-9-09" />
-  <meta name="dct.abstract" content="The definition of an ICN manifest is defined, and a catalog of motivating use cases is presented." />
-  <meta name="description" content="The definition of an ICN manifest is defined, and a catalog of motivating use cases is presented." />
+  <meta name="dct.identifier" content="urn:ietf:id:draft-wood-icnrg-icnmanifestusecases" />
+  <meta name="dct.issued" scheme="ISO8601" content="2015-11-09" />
+  <meta name="dct.abstract" content="A catalog of motivating use cases for ICN Manifests is presented." />
+  <meta name="description" content="A catalog of motivating use cases for ICN Manifests is presented." />
 
 </head>
 
@@ -411,7 +410,7 @@
   <td class="right">C. Westphal</td>
 </tr>
 <tr>
-  <td class="left">Expires: March 12, 2016</td>
+  <td class="left">Expires: May 12, 2016</td>
   <td class="right">Huawei</td>
 </tr>
 <tr>
@@ -424,27 +423,27 @@
 </tr>
 <tr>
   <td class="left"></td>
-  <td class="right">September 09, 2015</td>
+  <td class="right">November 09, 2015</td>
 </tr>
 
     	
     </tbody>
   </table>
 
-  <p class="title">ICN Manifest Requirements and Use Cases<br />
-  <span class="filename">draft-wood-icnrg-manifestrequirements</span></p>
+  <p class="title">ICN Manifest Use Cases<br />
+  <span class="filename">draft-wood-icnrg-icnmanifestusecases</span></p>
   
   <h1 id="rfc.abstract">
   <a href="#rfc.abstract">Abstract</a>
 </h1>
-<p>The definition of an ICN manifest is defined, and a catalog of motivating use cases is presented.</p>
+<p>A catalog of motivating use cases for ICN Manifests is presented.</p>
 <h1 id="rfc.status">
   <a href="#rfc.status">Status of This Memo</a>
 </h1>
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at http://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on March 12, 2016.</p>
+<p>This Internet-Draft will expire on May 12, 2016.</p>
 <h1 id="rfc.copyrightnotice">
   <a href="#rfc.copyrightnotice">Copyright Notice</a>
 </h1>
@@ -458,18 +457,17 @@
 
   	<li>1.   <a href="#rfc.section.1">Introduction</a></li>
 <li>2.   <a href="#rfc.section.2">A Minimalist Picture</a></li>
-<li>3.   <a href="#rfc.section.3">Manifest Requirements</a></li>
-<li>4.   <a href="#rfc.section.4">Possible Use Cases</a></li>
-<li>5.   <a href="#rfc.section.5">Security Considerations</a></li>
+<li>3.   <a href="#rfc.section.3">Use Cases</a></li>
+<li>4.   <a href="#rfc.section.4">Security Considerations</a></li>
 <li><a href="#rfc.authors">Authors' Addresses</a></li>
 
 
   </ul>
 
   <h1 id="rfc.section.1"><a href="#rfc.section.1">1.</a> <a href="#problems" id="problems">Introduction</a></h1>
-<p id="rfc.section.1.p.1">The purpose of this document is to motivate the design of ICN manifests and illustrate several use cases in which they might be used. It is not intended to specify a standard design, nor is it meant to evaluate existing designs.  The goal is simply to present a set of (non-exhaustive) requirements that the ICN community can use when evaluating different manifest proposals.</p>
+<p id="rfc.section.1.p.1">The purpose of this document is to motivate the design of ICN Manifests and illustrate several use cases in which they might be used. It is not intended to specify a standard design, nor is it meant to evaluate existing designs.  The goal is simply to present a set of (non-exhaustive) cases where ICN Manifests may prove useful for the &#8220;network&#8221; and &#8220;application&#8221; layer.</p>
 <h1 id="rfc.section.2"><a href="#rfc.section.2">2.</a> <a href="#a-minimalist-picture" id="a-minimalist-picture">A Minimalist Picture</a></h1>
-<p id="rfc.section.2.p.1">A manifest is a index used to encode a large and possibly infinite stream of data. In most cases, this stream is static and finite, meaning that the manifest simply encodes a large piece of contiguous data. Logically, a manifest may be perceived as a collection of pointers to other Content Objects and some additional metadata (TBD), as shown below.</p>
+<p id="rfc.section.2.p.1">A manifest is a index used to represent some stream of data. In most cases, this stream is static and finite, meaning that the manifest simply represents a piece of existing application data. Static CCNx Manifests, for example, are a particular type of Manifest that seek to achieve this goal. Logically, a manifest may be perceived as a collection of pointers to other Content Objects and some additional metadata (TBD), as shown below.</p>
 <div id="rfc.figure.1"/>
 <div id="sample-manifest"/>
 <pre>
@@ -495,28 +493,9 @@
                                             +--------------+
 </pre>
 <p class="figure">Figure 1: A minimalist representation of an ICN manifest.</p>
-<p id="rfc.section.2.p.2">Details about the type and encoding of metadata, the role and usage of Content Object pointers, and the types of data that can be represented by a Manifest are an ongoing design challenges.</p>
-<h1 id="rfc.section.3"><a href="#rfc.section.3">3.</a> <a href="#manifest-requirements" id="manifest-requirements">Manifest Requirements</a></h1>
-<p id="rfc.section.3.p.1">In this section we enumerate the functional requirements for Manifests.</p>
-<p/>
-
-<ol>
-  <li>A manifest shall be a type of Content Object.</li>
-  <li>The wire format representation of a manifest shall be able to be interpreted by a forwarder without needing to parse the entire Content Object.</li>
-  <li>A manifest shall be able to encode a large and (not necessarily) contiguous piece of data that is beyond the size limitations of a Content Object.</li>
-  <li>A manifest payload may contain both application data and pointers to other Content Objects.</li>
-  <li>For each pointer in a manifest, the type of Content Object to which the pointer refers shall be explicitly listed.</li>
-  <li>A manifest may contain pointers to other Content Objects which are themselves manifests.</li>
-  <li>A manifest shall contain an optional reference to a structured decryption metadata (SDM) access control structure.</li>
-  <li>The information in a manifest SDM shall apply to (a) any application data in the manifest and (b) any pointers to child Content Objects.</li>
-  <li>A manifest shall encode default metadata about the encoded application data and child Content Objects, including: total size (in bytes).</li>
-  <li>A manifest shall contain an optional reference to a Content Object which contains application-specific metadata.</li>
-  <li>A manifest shall support named and nameless Content Objects.</li>
-  <li>A manifest shall be able to carry cleartext and ciphertext payloads.</li>
-  <li>A manifest shall encapsulate and indicate the presence of encrypted data.</li>
-</ol>
-<h1 id="rfc.section.4"><a href="#rfc.section.4">4.</a> <a href="#possible-use-cases" id="possible-use-cases">Possible Use Cases</a></h1>
-<p id="rfc.section.4.p.1">In this section we enumerate possible use cases that can be addressed by Manifests.  This list is not exhaustive, and is open to modification and extension from the community.</p>
+<p id="rfc.section.2.p.2">Details about the type and encoding of metadata, the role and usage of Message pointers, and the types of data that can be represented by a Manifest are ongoing architectural and design challenges.</p>
+<h1 id="rfc.section.3"><a href="#rfc.section.3">3.</a> <a href="#use-cases" id="use-cases">Use Cases</a></h1>
+<p id="rfc.section.3.p.1">In this section we enumerate possible use cases that could be addressed by Manifests.  This list is not exhaustive, and is open to modification and extension from the community.</p>
 <table cellpadding="3" cellspacing="0" class="tt full center">
   <thead>
     <tr>
@@ -643,8 +622,8 @@
     </tr>
   </tbody>
 </table>
-<h1 id="rfc.section.5"><a href="#rfc.section.5">5.</a> <a href="#security-considerations" id="security-considerations">Security Considerations</a></h1>
-<p id="rfc.section.5.p.1">TODO.</p>
+<h1 id="rfc.section.4"><a href="#rfc.section.4">4.</a> <a href="#security-considerations" id="security-considerations">Security Considerations</a></h1>
+<p id="rfc.section.4.p.1">TODO.</p>
 <h1 id="rfc.authors">
   <a href="#rfc.authors">Authors' Addresses</a>
 </h1>
