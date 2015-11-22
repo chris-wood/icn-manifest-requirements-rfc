@@ -467,28 +467,28 @@
   <h1 id="rfc.section.1"><a href="#rfc.section.1">1.</a> <a href="#problems" id="problems">Introduction</a></h1>
 <p id="rfc.section.1.p.1">The purpose of this document is to motivate the design of ICN Manifests and illustrate several use cases in which they might be used. It is not intended to specify a standard design, nor is it meant to evaluate existing designs.  The goal is simply to present a set of (non-exhaustive) cases where ICN Manifests may prove useful for the &#8220;network&#8221; and &#8220;application&#8221; layer.</p>
 <h1 id="rfc.section.2"><a href="#rfc.section.2">2.</a> <a href="#a-minimalist-picture" id="a-minimalist-picture">A Minimalist Picture</a></h1>
-<p id="rfc.section.2.p.1">A manifest is a index used to represent some stream of data. In most cases, this stream is static and finite, meaning that the manifest simply represents a piece of existing application data. Static CCNx Manifests, for example, are a particular type of Manifest that seek to achieve this goal. Logically, a manifest may be perceived as a collection of pointers to other Content Objects and some additional metadata (TBD), as shown below.</p>
+<p id="rfc.section.2.p.1">A manifest is an index used to represent some stream of data. In most cases, this stream is static and finite, meaning that the manifest simply represents a piece of existing application data. Immutable Single Object CCNx Manifests, for example, are a particular type of Manifest that seek to achieve this goal. Logically, a manifest may be perceived as a collection of pointers to other Content Objects and some additional metadata (TBD), as shown below.</p>
 <div id="rfc.figure.1"/>
 <div id="sample-manifest"/>
 <pre>
 +---------------+
-| TYPE=MANIFEST |
+|   (MANIFEST)  |
 |---------------|
 |   metadata    |
 |---------------|
 |   Pointer 1   | ==&gt; +--------------+
-|               |     | TYPE=CONTENT |
+|               |     |   (CONTENT)  |
 |               |     |   &lt;payload&gt;  |
 |               |     +--------------+
 |   Pointer 2   | ==&gt; +--------------+
-|               |     | TYPE=CONTENT |
+|               |     |   (CONTENT)  |
 |               |     |   &lt;payload&gt;  |
 |               |     +--------------+
 |   Pointer 3   | ==&gt; +---------------+
-+---------------+     | TYPE=MANIFEST |
++---------------+     |   (MANIFEST)  |
                       |---------------|
                       |   Pointer 1   | ==&gt; +--------------+
-                      +---------------+     | TYPE=CONTENT |
+                      +---------------+     |   (CONTENT)  |
                                             |   &lt;payload&gt;  |
                                             +--------------+
 </pre>
@@ -517,7 +517,7 @@
     </tr>
     <tr>
       <td class="left">3</td>
-      <td class="left"/>
+      <td class="left">Store only Content Object metadata (?)</td>
       <td class="left">Store only Content Object metadata</td>
     </tr>
     <tr>
@@ -552,7 +552,7 @@
     </tr>
     <tr>
       <td class="left">10</td>
-      <td class="left"/>
+      <td class="left">Encode different content locator strategies</td>
       <td class="left">Encode different traversal strategies for visiting Content Object pointers contained in a Manifest</td>
     </tr>
     <tr>
@@ -562,12 +562,12 @@
     </tr>
     <tr>
       <td class="left">12</td>
-      <td class="left">Support Content Object personalization and internationalization</td>
+      <td class="left"/>
       <td class="left">Support Content Object personalization and internationalization</td>
     </tr>
     <tr>
       <td class="left">13</td>
-      <td class="left"/>
+      <td class="left">Group related data together (independent application datum that are typically fetched as a whole)</td>
       <td class="left">Group related data together (e.g., for Web page content)</td>
     </tr>
     <tr>

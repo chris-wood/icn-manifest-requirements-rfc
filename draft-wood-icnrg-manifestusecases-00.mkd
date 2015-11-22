@@ -67,31 +67,31 @@ may prove useful for the "network" and "application" layer.
 A Minimalist Picture
 ====================
 
-A manifest is a index used to represent some stream of data. In most cases, this stream
+A manifest is an index used to represent some stream of data. In most cases, this stream
 is static and finite, meaning that the manifest simply represents a piece of existing
-application data. Static CCNx Manifests, for example, are a particular type of Manifest
+application data. Immutable Single Object CCNx Manifests, for example, are a particular type of Manifest
 that seek to achieve this goal. Logically, a manifest may be perceived as a collection
 of pointers to other Content Objects and some additional metadata (TBD), as shown below.
 
 ~~~
 +---------------+
-| TYPE=MANIFEST |
+|   (MANIFEST)  |
 |---------------|
 |   metadata    |
 |---------------|
 |   Pointer 1   | ==> +--------------+
-|               |     | TYPE=CONTENT |
+|               |     |   (CONTENT)  |
 |               |     |   <payload>  |
 |               |     +--------------+
 |   Pointer 2   | ==> +--------------+
-|               |     | TYPE=CONTENT |
+|               |     |   (CONTENT)  |
 |               |     |   <payload>  |
 |               |     +--------------+
 |   Pointer 3   | ==> +---------------+
-+---------------+     | TYPE=MANIFEST |
++---------------+     |   (MANIFEST)  |
                       |---------------|
                       |   Pointer 1   | ==> +--------------+
-                      +---------------+     | TYPE=CONTENT |
+                      +---------------+     |   (CONTENT)  |
                                             |   <payload>  |
                                             +--------------+
 ~~~
@@ -110,17 +110,17 @@ community.
 | ID | Network Use Cases        | Application Use Cases       |
 | 1 | Amortize verification cost of chunks| Amortize verification cost of chunks|
 | 2 | Support network-layer prefetching |  |
-| 3 | | Store only Content Object metadata |
+| 3 | Store only Content Object metadata (?) | Store only Content Object metadata |
 | 4 | Support named and nameless Content Objects | Support named and nameless Content Objects |
 | 5 | | Efficiently encode sparse Content Object files with possible compression |
 | 6 | Provide alternate sources for a Content Object data blocks (i.e., give more than one routing hint) | |
 | 7 | Serve as thunks in Named Function Networking | Serve as thunks in Named Function Networking |
 | 8 | Describe the namespace of a particular Content Object | Describe the namespace of a particular Content Object |
 | 9 | Store authenticated denial namespace descriptions (see above) | Store authenticated denial namespace descriptions (see above) |
-| 10 | | Encode different traversal strategies for visiting Content Object pointers contained in a Manifest |
+| 10 | Encode different content locator strategies | Encode different traversal strategies for visiting Content Object pointers contained in a Manifest |
 | 11 | | Encode parallel forks (file resource forks or property lists associated with a Content Object) |
-| 12 | Support Content Object personalization and internationalization | Support Content Object personalization and internationalization |
-| 13 | | Group related data together (e.g., for Web page content) |
+| 12 | | Support Content Object personalization and internationalization |
+| 13 |Group related data together (independent application datum that are typically fetched as a whole) | Group related data together (e.g., for Web page content) |
 | 14 | Provide transport-layer information or aid transport protocols | |
 | 15 | Facilitate Content Object, service, or entity discovery | |
 | 16 | Enable content deletion in routers/forwarders | |

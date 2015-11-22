@@ -77,13 +77,13 @@ Table of Contents
 
 2.  A Minimalist Picture
 
-   A manifest is a index used to represent some stream of data.  In most
-   cases, this stream is static and finite, meaning that the manifest
-   simply represents a piece of existing application data.  Static CCNx
-   Manifests, for example, are a particular type of Manifest that seek
-   to achieve this goal.  Logically, a manifest may be perceived as a
-   collection of pointers to other Content Objects and some additional
-   metadata (TBD), as shown below.
+   A manifest is an index used to represent some stream of data.  In
+   most cases, this stream is static and finite, meaning that the
+   manifest simply represents a piece of existing application data.
+   Immutable Single Object CCNx Manifests, for example, are a particular
+   type of Manifest that seek to achieve this goal.  Logically, a
+   manifest may be perceived as a collection of pointers to other
+   Content Objects and some additional metadata (TBD), as shown below.
 
 
 
@@ -115,23 +115,23 @@ Internet-Draft             ICNManifestUseCases             November 2015
 
 
    +---------------+
-   | TYPE=MANIFEST |
+   |   (MANIFEST)  |
    |---------------|
    |   metadata    |
    |---------------|
    |   Pointer 1   | ==> +--------------+
-   |               |     | TYPE=CONTENT |
+   |               |     |   (CONTENT)  |
    |               |     |   <payload>  |
    |               |     +--------------+
    |   Pointer 2   | ==> +--------------+
-   |               |     | TYPE=CONTENT |
+   |               |     |   (CONTENT)  |
    |               |     |   <payload>  |
    |               |     +--------------+
    |   Pointer 3   | ==> +---------------+
-   +---------------+     | TYPE=MANIFEST |
+   +---------------+     |   (MANIFEST)  |
                          |---------------|
                          |   Pointer 1   | ==> +--------------+
-                         +---------------+     | TYPE=CONTENT |
+                         +---------------+     |   (CONTENT)  |
                                                |   <payload>  |
                                                +--------------+
 
@@ -156,8 +156,8 @@ Internet-Draft             ICNManifestUseCases             November 2015
    | 2  | Support network-layer        |                               |
    |    | prefetching                  |                               |
    |    |                              |                               |
-   | 3  |                              | Store only Content Object     |
-   |    |                              | metadata                      |
+   | 3  | Store only Content Object    | Store only Content Object     |
+   |    | metadata (?)                 | metadata                      |
    |    |                              |                               |
    | 4  | Support named and nameless   | Support named and nameless    |
    |    | Content Objects              | Content Objects               |
@@ -189,8 +189,8 @@ Internet-Draft             ICNManifestUseCases             November 2015
    |    | namespace descriptions (see  | namespace descriptions (see   |
    |    | above)                       | above)                        |
    |    |                              |                               |
-   | 10 |                              | Encode different traversal    |
-   |    |                              | strategies for visiting       |
+   | 10 | Encode different content     | Encode different traversal    |
+   |    | locator strategies           | strategies for visiting       |
    |    |                              | Content Object pointers       |
    |    |                              | contained in a Manifest       |
    |    |                              |                               |
@@ -199,12 +199,14 @@ Internet-Draft             ICNManifestUseCases             November 2015
    |    |                              | lists associated with a       |
    |    |                              | Content Object)               |
    |    |                              |                               |
-   | 12 | Support Content Object       | Support Content Object        |
-   |    | personalization and          | personalization and           |
-   |    | internationalization         | internationalization          |
+   | 12 |                              | Support Content Object        |
+   |    |                              | personalization and           |
+   |    |                              | internationalization          |
    |    |                              |                               |
-   | 13 |                              | Group related data together   |
-   |    |                              | (e.g., for Web page content)  |
+   | 13 | Group related data together  | Group related data together   |
+   |    | (independent application     | (e.g., for Web page content)  |
+   |    | datum that are typically     |                               |
+   |    | fetched as a whole)          |                               |
    |    |                              |                               |
    | 14 | Provide transport-layer      |                               |
    |    | information or aid transport |                               |
@@ -216,8 +218,6 @@ Internet-Draft             ICNManifestUseCases             November 2015
    | 16 | Enable content deletion in   |                               |
    |    | routers/forwarders           |                               |
    |    |                              |                               |
-   | 17 |                              | Embed authentication key      |
-   |    |                              | information (e.g., key        |
 
 
 
@@ -226,6 +226,8 @@ Tschudin, et al.          Expires May 12, 2016                  [Page 4]
 Internet-Draft             ICNManifestUseCases             November 2015
 
 
+   | 17 |                              | Embed authentication key      |
+   |    |                              | information (e.g., key        |
    |    |                              | catalogs)                     |
    |    |                              |                               |
    | 18 |                              | Serve as a database cursor    |
@@ -271,8 +273,6 @@ Authors' Addresses
    PARC
 
    Email: cwood@parc.com
-
-
 
 
 
