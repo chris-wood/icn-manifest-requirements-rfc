@@ -58,9 +58,9 @@ A catalog of motivating use cases for ICN Manifests is presented.
 Introduction        {#problems}
 ============
 
-The purpose of this document is to motivate the design of ICN Manifests and
+The purpose of this document is to motivate the design of advanced ICN Manifests and
 illustrate several use cases in which they might be used. It is not intended
-to specify a standard design, nor is it meant to evaluate existing designs.
+to specify a standard design, nor is it meant to evaluate existing designs such as {{FLIC}}.
 The goal is simply to present a set of (non-exhaustive) cases where ICN Manifests
 may prove useful for the "network" and "application" layer.
 
@@ -70,8 +70,8 @@ A Minimalist Picture
 A manifest is an index used to represent some stream of data. In most cases, this stream
 is static and finite, meaning that the manifest simply represents a piece of existing
 application data. Immutable Single Object CCNx Manifests, for example, are a particular type of Manifest
-that seek to achieve this goal. Logically, a manifest may be perceived as a collection
-of pointers to other Content Objects and some additional metadata (TBD), as shown below.
+that seek to achieve this goal. Logically, a manifest may be viewed as a collection
+of pointers to other Content Objects and some additional metadata, as shown below.
 
 ~~~
 +---------------+
@@ -97,7 +97,7 @@ of pointers to other Content Objects and some additional metadata (TBD), as show
 ~~~
 {: #sample-manifest title="A minimalist representation of an ICN manifest."}
 
-Details about the type and encoding of metadata, the role and usage of Message
+Details about the type and encoding of metadata, the role and usage of message
 pointers, and the types of data that can be represented by a Manifest are ongoing
 architectural and design challenges.
 
@@ -130,6 +130,8 @@ community.
 | 20 | | Be used by or as a (decentralized) trusted timestamping service |
 | 21 | | Backend storage for a control versioning system, GitHub style |
 | 22 | | Encode open-ended data streams (i.e., manifests may point to data not yet in existence) |
+| 23 | | Diff-encoded content versioning |
+| 24 | | Store sparse data by encoding block-level offsets |
 
 Security Considerations
 =======================
