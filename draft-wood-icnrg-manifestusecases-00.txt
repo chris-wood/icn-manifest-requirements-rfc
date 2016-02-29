@@ -5,13 +5,13 @@
 ICNRG Working Group                                          C. Tschudin
 Internet-Draft                                       University of Basel
 Intended status: Informational                               C. Westphal
-Expires: May 12, 2016                                             Huawei
+Expires: September 1, 2015                                        Huawei
                                                                  C. Wood
                                                                     PARC
-                                                       November 09, 2015
+                                                       February 28, 2015
 
 
-                         ICN Manifest Use Cases
+                    ICN Advanced Manifest Use Cases
                   draft-wood-icnrg-icnmanifestusecases
 
 Abstract
@@ -33,7 +33,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on May 12, 2016.
+   This Internet-Draft will expire on September 1, 2015.
 
 Copyright Notice
 
@@ -53,102 +53,35 @@ Copyright Notice
 
 
 
-Tschudin, et al.          Expires May 12, 2016                  [Page 1]
+Tschudin, et al.        Expires September 1, 2015               [Page 1]
 
-Internet-Draft             ICNManifestUseCases             November 2015
+Internet-Draft             ICNManifestUseCases             February 2015
 
 
 Table of Contents
 
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
-   2.  A Minimalist Picture  . . . . . . . . . . . . . . . . . . . .   2
-   3.  Use Cases . . . . . . . . . . . . . . . . . . . . . . . . . .   3
-   4.  Security Considerations . . . . . . . . . . . . . . . . . . .   5
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   5
+   2.  Use Cases . . . . . . . . . . . . . . . . . . . . . . . . . .   2
+   3.  Security Considerations . . . . . . . . . . . . . . . . . . .   4
+   4.  Normative References  . . . . . . . . . . . . . . . . . . . .   4
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   4
 
 1.  Introduction
 
-   The purpose of this document is to motivate the design of ICN
-   Manifests and illustrate several use cases in which they might be
-   used.  It is not intended to specify a standard design, nor is it
-   meant to evaluate existing designs.  The goal is simply to present a
-   set of (non-exhaustive) cases where ICN Manifests may prove useful
-   for the "network" and "application" layer.
+   The purpose of this document is to motivate the design of advanced
+   ICN Manifests and illustrate several network and application use
+   cases in which they might be used.  These manifests may be built on
+   top of the base FLIC manifest [FLIC].  This document is not intended
+   to specify a standard design.
 
-2.  A Minimalist Picture
-
-   A manifest is an index used to represent some stream of data.  In
-   most cases, this stream is static and finite, meaning that the
-   manifest simply represents a piece of existing application data.
-   Immutable Single Object CCNx Manifests, for example, are a particular
-   type of Manifest that seek to achieve this goal.  Logically, a
-   manifest may be perceived as a collection of pointers to other
-   Content Objects and some additional metadata (TBD), as shown below.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Tschudin, et al.          Expires May 12, 2016                  [Page 2]
-
-Internet-Draft             ICNManifestUseCases             November 2015
-
-
-   +---------------+
-   |   (MANIFEST)  |
-   |---------------|
-   |   metadata    |
-   |---------------|
-   |   Pointer 1   | ==> +--------------+
-   |               |     |   (CONTENT)  |
-   |               |     |   <payload>  |
-   |               |     +--------------+
-   |   Pointer 2   | ==> +--------------+
-   |               |     |   (CONTENT)  |
-   |               |     |   <payload>  |
-   |               |     +--------------+
-   |   Pointer 3   | ==> +---------------+
-   +---------------+     |   (MANIFEST)  |
-                         |---------------|
-                         |   Pointer 1   | ==> +--------------+
-                         +---------------+     |   (CONTENT)  |
-                                               |   <payload>  |
-                                               +--------------+
-
-         Figure 1: A minimalist representation of an ICN manifest.
-
-   Details about the type and encoding of metadata, the role and usage
-   of Message pointers, and the types of data that can be represented by
-   a Manifest are ongoing architectural and design challenges.
-
-3.  Use Cases
+2.  Use Cases
 
    In this section we enumerate possible use cases that could be
-   addressed by Manifests.  This list is not exhaustive, and is open to
-   modification and extension from the community.
+   addressed by advanced Manifests.  This list is not exhaustive, and is
+   open to modification and extension from the community.
 
    +----+------------------------------+-------------------------------+
-   | ID | Network Use Cases            | Application Use Cases         |
+   | ID | Network Use Case             | Application Use Case          |
    +----+------------------------------+-------------------------------+
    | 1  | Amortize verification cost   | Amortize verification cost of |
    |    | of chunks                    | chunks                        |
@@ -162,14 +95,6 @@ Internet-Draft             ICNManifestUseCases             November 2015
    | 4  | Support named and nameless   | Support named and nameless    |
    |    | Content Objects              | Content Objects               |
    |    |                              |                               |
-
-
-
-Tschudin, et al.          Expires May 12, 2016                  [Page 3]
-
-Internet-Draft             ICNManifestUseCases             November 2015
-
-
    | 5  |                              | Efficiently encode sparse     |
    |    |                              | Content Object files with     |
    |    |                              | possible compression          |
@@ -181,6 +106,14 @@ Internet-Draft             ICNManifestUseCases             November 2015
    |    |                              |                               |
    | 7  | Serve as thunks in Named     | Serve as thunks in Named      |
    |    | Function Networking          | Function Networking           |
+
+
+
+Tschudin, et al.        Expires September 1, 2015               [Page 2]
+
+Internet-Draft             ICNManifestUseCases             February 2015
+
+
    |    |                              |                               |
    | 8  | Describe the namespace of a  | Describe the namespace of a   |
    |    | particular Content Object    | particular Content Object     |
@@ -218,14 +151,6 @@ Internet-Draft             ICNManifestUseCases             November 2015
    | 16 | Enable content deletion in   |                               |
    |    | routers/forwarders           |                               |
    |    |                              |                               |
-
-
-
-Tschudin, et al.          Expires May 12, 2016                  [Page 4]
-
-Internet-Draft             ICNManifestUseCases             November 2015
-
-
    | 17 |                              | Embed authentication key      |
    |    |                              | information (e.g., key        |
    |    |                              | catalogs)                     |
@@ -237,6 +162,14 @@ Internet-Draft             ICNManifestUseCases             November 2015
    |    |                              | (tamperproof open list of     |
    |    |                              | records)                      |
    |    |                              |                               |
+
+
+
+Tschudin, et al.        Expires September 1, 2015               [Page 3]
+
+Internet-Draft             ICNManifestUseCases             February 2015
+
+
    | 20 |                              | Be used by or as a            |
    |    |                              | (decentralized) trusted       |
    |    |                              | timestamping service          |
@@ -249,11 +182,21 @@ Internet-Draft             ICNManifestUseCases             November 2015
    |    |                              | streams (i.e., manifests may  |
    |    |                              | point to data not yet in      |
    |    |                              | existence)                    |
+   |    |                              |                               |
+   | 23 |                              | Diff-encoded content          |
+   |    |                              | versioning                    |
    +----+------------------------------+-------------------------------+
 
-4.  Security Considerations
+3.  Security Considerations
 
    TODO.
+
+4.  Normative References
+
+   [FLIC]     University of Basel, . and . PARC, Inc, "File-Like ICN
+              Collection (FLIC)", n.d., <http://github.com/tschudin/
+              icn-flic-rfc/blob/master/
+              draft-tschudin-icnrg-flic-00.txt>.
 
 Authors' Addresses
 
@@ -272,9 +215,10 @@ Authors' Addresses
    Christopher A. Wood
    PARC
 
-   Email: cwood@parc.com
+   Email: christopher.wood@parc.com
 
 
 
 
-Tschudin, et al.          Expires May 12, 2016                  [Page 5]
+
+Tschudin, et al.        Expires September 1, 2015               [Page 4]

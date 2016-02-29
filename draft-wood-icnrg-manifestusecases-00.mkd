@@ -1,8 +1,8 @@
 ---
-title: ICN Manifest Use Cases
+title: ICN Advanced Manifest Use Cases
 abbrev: ICNManifestUseCases
 docname: draft-wood-icnrg-icnmanifestusecases
-date: 2015-11-09
+date: 2015-2-28
 category: info
 
 ipr: trust200902
@@ -28,26 +28,19 @@ author:
    ins: C. A. Wood
    name: Christopher A. Wood
    org: PARC
-   email: cwood@parc.com
+   email: christopher.wood@parc.com
 
 normative:
----  RFC2119:
----  RFC3986:
----  RFC4086:
----  RFC4648:
-
-informative:
----  RFC5389:
----  I-D.ietf-behave-turn:
----  STUNT:
----    target: http://deusty.blogspot.com/2007/09/stunt-out-of-band-channels.html
----    title: STUNT & out-of-band channels
----    author:
----      name: Robbie Hanson
----      ins: R. Hanson
----    date: 2007-09-17
----  I-D.meye* UseCase-xmpp-e2e-encryption:
----  I-D.ietf-xmpp-3920bis:
+    FLIC:
+        target: http://github.com/tschudin/icn-flic-rfc/blob/master/draft-tschudin-icnrg-flic-00.txt
+        title: File-Like ICN Collection (FLIC)
+        author:
+            -
+                name: C. Tschudin
+                ins: University of Basel
+            -   
+                name: C. Wood
+                ins: PARC, Inc.
 
 --- abstract
 
@@ -55,59 +48,21 @@ A catalog of motivating use cases for ICN Manifests is presented.
 
 --- middle
 
-Introduction        {#problems}
+Introduction   
 ============
 
 The purpose of this document is to motivate the design of advanced ICN Manifests and
-illustrate several use cases in which they might be used. It is not intended
-to specify a standard design, nor is it meant to evaluate existing designs such as {{FLIC}}.
-The goal is simply to present a set of (non-exhaustive) cases where ICN Manifests
-may prove useful for the "network" and "application" layer.
-
-A Minimalist Picture
-====================
-
-A manifest is an index used to represent some stream of data. In most cases, this stream
-is static and finite, meaning that the manifest simply represents a piece of existing
-application data. Immutable Single Object CCNx Manifests, for example, are a particular type of Manifest
-that seek to achieve this goal. Logically, a manifest may be viewed as a collection
-of pointers to other Content Objects and some additional metadata, as shown below.
-
-~~~
-+---------------+
-|   (MANIFEST)  |
-|---------------|
-|   metadata    |
-|---------------|
-|   Pointer 1   | ==> +--------------+
-|               |     |   (CONTENT)  |
-|               |     |   <payload>  |
-|               |     +--------------+
-|   Pointer 2   | ==> +--------------+
-|               |     |   (CONTENT)  |
-|               |     |   <payload>  |
-|               |     +--------------+
-|   Pointer 3   | ==> +---------------+
-+---------------+     |   (MANIFEST)  |
-                      |---------------|
-                      |   Pointer 1   | ==> +--------------+
-                      +---------------+     |   (CONTENT)  |
-                                            |   <payload>  |
-                                            +--------------+
-~~~
-{: #sample-manifest title="A minimalist representation of an ICN manifest."}
-
-Details about the type and encoding of metadata, the role and usage of message
-pointers, and the types of data that can be represented by a Manifest are ongoing
-architectural and design challenges.
+illustrate several network and application use cases in which they might be used. These manifests may be built
+on top of the base FLIC manifest {{FLIC}}. This document is not intended
+to specify a standard design. 
 
 # Use Cases
 
-In this section we enumerate possible use cases that could be addressed by Manifests.
-This list is not exhaustive, and is open to modification and extension from the
-community.
+In this section we enumerate possible use cases that could be addressed by advanced 
+Manifests. This list is not exhaustive, and is open to modification and extension 
+from the community.
 
-| ID | Network Use Cases        | Application Use Cases       |
+| ID | Network Use Case        | Application Use Case       |
 | 1 | Amortize verification cost of chunks| Amortize verification cost of chunks|
 | 2 | Support network-layer prefetching |  |
 | 3 | Store only Content Object metadata (?) | Store only Content Object metadata |
@@ -131,7 +86,6 @@ community.
 | 21 | | Backend storage for a control versioning system, GitHub style |
 | 22 | | Encode open-ended data streams (i.e., manifests may point to data not yet in existence) |
 | 23 | | Diff-encoded content versioning |
-| 24 | | Store sparse data by encoding block-level offsets |
 
 Security Considerations
 =======================
