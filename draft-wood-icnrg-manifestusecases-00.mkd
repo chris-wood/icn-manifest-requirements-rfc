@@ -54,38 +54,40 @@ Introduction
 The purpose of this document is to motivate the design of advanced ICN Manifests and
 illustrate several network and application use cases in which they might be used. These manifests may be built
 on top of the base FLIC manifest {{FLIC}}. This document is not intended
-to specify a standard design. 
+to specify a standard design.
 
 # Use Cases
 
-In this section we enumerate possible use cases that could be addressed by advanced 
-Manifests. This list is not exhaustive, and is open to modification and extension 
+In this section we enumerate possible use cases that could be addressed by advanced
+Manifests. This list is not exhaustive, and is open to modification and extension
 from the community.
 
-| ID | Network Use Case        | Application Use Case       |
-| 1 | Amortize verification cost of chunks| Amortize verification cost of chunks|
-| 2 | Support network-layer prefetching |  |
-| 3 | Store only Content Object metadata (?) | Store only Content Object metadata |
-| 4 | Support named and nameless Content Objects | Support named and nameless Content Objects |
-| 5 | | Efficiently encode sparse Content Object files with possible compression |
-| 6 | Provide alternate sources for a Content Object data blocks (i.e., give more than one routing hint) | |
-| 7 | Serve as thunks in Named Function Networking | Serve as thunks in Named Function Networking |
-| 8 | Describe the namespace of a particular Content Object | Describe the namespace of a particular Content Object |
-| 9 | Store authenticated denial namespace descriptions (see above) | Store authenticated denial namespace descriptions (see above) |
-| 10 | Encode different content locator strategies | Encode different traversal strategies for visiting Content Object pointers contained in a Manifest |
-| 11 | | Encode parallel forks (file resource forks or property lists associated with a Content Object) |
-| 12 | | Support Content Object personalization and internationalization |
-| 13 |Group related data together (independent application datum that are typically fetched as a whole) | Group related data together (e.g., for Web page content) |
-| 14 | Provide transport-layer information or aid transport protocols | |
-| 15 | Facilitate Content Object, service, or entity discovery | |
-| 16 | Enable content deletion in routers/forwarders | |
-| 17 | | Embed authentication key information (e.g., key catalogs) |
-| 18 | | Serve as a database cursor |
-| 19 | | Turn the manifest data structure into a block chain (tamperproof open list of records) |
-| 20 | | Be used by or as a (decentralized) trusted timestamping service |
+
+| 1 | Amortize verification cost of chunks| NET APP
+| 2 | Support network-layer prefetching | NET APP
+| 13 | Group related data together (independent application datum that are typically fetched as a whole) -> directory | APP NET (to hint at caching strategies)
+| 3 | Store only Content Object metadata | NET APP  (offload metadata in content objects to parent manifest, authenticated denial data, facilitate service or entity discovery, embed authentication key information (e.g., key catalogs))
+| 4 | Support named and nameless Content Objects | NET APP
+| 6 | Provide alternate sources for a Content Object data blocks (i.e., give more than one routing hint) |
+| 8 | Describe the namespace of a particular Content Object | APP (describe different names and related names for this content object)
+Encode different content locator strategies | NET APP
+Encode different traversal strategies for visiting Content Object pointers contained in a Manifest | APP
+Support Content Object personalization and internationalization | APP (same name but the content depends on location and identity, for example)
+| 22 | Encode open-ended data streams (i.e., manifests may point to data not yet in existence) | APP NET
+| 23 | Diff-encoded content versioning | APP
+
+
+
+
 | 21 | | Backend storage for a control versioning system, GitHub style |
-| 22 | | Encode open-ended data streams (i.e., manifests may point to data not yet in existence) |
-| 23 | | Diff-encoded content versioning |
+| 19 | Turn the manifest data structure into a block chain (tamperproof open list of records) or Be used by or as a (decentralized) trusted timestamping service | APP ()
+| 14 | Provide transport-layer information or aid transport protocols | (provide windowing information or suggestions about downstream traffic) APP NET (friendliness)
+| 5 | Efficiently encode sparse Content Object files with possible compression |
+| 7 | Serve as thunks in Named Function Networking |
+| 18 | | Serve as a database cursor |
+
+
+
 
 Security Considerations
 =======================
