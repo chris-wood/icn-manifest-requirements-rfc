@@ -375,9 +375,10 @@
 
   <link href="#rfc.toc" rel="Contents"/>
 <link href="#rfc.section.1" rel="Chapter" title="1 Introduction"/>
-<link href="#rfc.section.2" rel="Chapter" title="2 Use Cases"/>
-<link href="#rfc.section.3" rel="Chapter" title="3 Security Considerations"/>
-<link href="#rfc.references" rel="Chapter" title="4 Normative References"/>
+<link href="#rfc.section.2" rel="Chapter" title="2 Use Case Descriptions"/>
+<link href="#rfc.section.3" rel="Chapter" title="3 Use Case Classification"/>
+<link href="#rfc.section.4" rel="Chapter" title="4 Security Considerations"/>
+<link href="#rfc.references" rel="Chapter" title="5 Normative References"/>
 <link href="#rfc.authors" rel="Chapter"/>
 
 
@@ -456,9 +457,10 @@
   <ul class="toc">
 
   	<li>1.   <a href="#rfc.section.1">Introduction</a></li>
-<li>2.   <a href="#rfc.section.2">Use Cases</a></li>
-<li>3.   <a href="#rfc.section.3">Security Considerations</a></li>
-<li>4.   <a href="#rfc.references">Normative References</a></li>
+<li>2.   <a href="#rfc.section.2">Use Case Descriptions</a></li>
+<li>3.   <a href="#rfc.section.3">Use Case Classification</a></li>
+<li>4.   <a href="#rfc.section.4">Security Considerations</a></li>
+<li>5.   <a href="#rfc.references">Normative References</a></li>
 <li><a href="#rfc.authors">Authors' Addresses</a></li>
 
 
@@ -466,137 +468,125 @@
 
   <h1 id="rfc.section.1"><a href="#rfc.section.1">1.</a> <a href="#introduction" id="introduction">Introduction</a></h1>
 <p id="rfc.section.1.p.1">The purpose of this document is to motivate the design of advanced ICN Manifests and illustrate several network and application use cases in which they might be used. These manifests may be built on top of the base FLIC manifest <a href="#FLIC">[FLIC]</a>. This document is not intended to specify a standard design.</p>
-<h1 id="rfc.section.2"><a href="#rfc.section.2">2.</a> <a href="#use-cases" id="use-cases">Use Cases</a></h1>
+<h1 id="rfc.section.2"><a href="#rfc.section.2">2.</a> <a href="#use-case-descriptions" id="use-case-descriptions">Use Case Descriptions</a></h1>
 <p id="rfc.section.2.p.1">In this section we enumerate possible use cases that could be addressed by advanced Manifests. This list is not exhaustive, and is open to modification and extension from the community.</p>
+<p/>
+
+<ol>
+  <li>Amortize verification cost of chunks</li>
+  <li>Support network-layer prefetching</li>
+  <li>Store Content Object metadata</li>
+</ol>
+<p id="rfc.section.2.p.3">Metadata that is common to multiple content objects can be offloaded to a parent manifest. Alternatively, the manifest can carry only metadata instead of pointers to actual data. Examples of metadata include:</p>
+<p/>
+
+<ul>
+  <li>Offload metadata in content objects to parent manifest</li>
+  <li>Authenticated denial information</li>
+  <li>Service or entity discovery information</li>
+  <li>Embedded authentication key information (e.g., key catalogs)</li>
+  <li>The namespace of a Content Object (e.g., names of related content)</li>
+</ul>
+<p/>
+
+<ol>
+  <li>Group related data together</li>
+</ol>
+<p id="rfc.section.2.p.6">A manifest can combine data from multiple sources into one combined object. One such example would be a webpage, containing images from an image repository, text from another one, cookies and tracking objects from a third party and advertisement from another provider for such content. The overall name in the manifest would be that of the webpage, say www.cnn.com/frontpage but the manifest would group all the data together.</p>
+<p id="rfc.section.2.p.7">The grouping of object together may guide caching policies at the network level, if caching is allowable. For instance, the objects associated into a common group could be cached under the same rule.</p>
+<p/>
+
+<ol>
+  <li>Encode different content locator strategies</li>
+</ol>
+<p id="rfc.section.2.p.9">A possible use case is to prioritize potential locators and therefore to embed a content locator strategy into the manifest. If multiple copies of the content corresponding to the manifest exist, the manifest could present a selection strategy.  Say, try this copy first, then this one, then this one, etc. Other strategies are possible, say selecting chunks from different locations, etc.</p>
+<p id="rfc.section.2.p.10">The strategy may refer to different network locations, therefore offering different network paths to the objects. The different network paths have of course implication on the application layer as well.</p>
+<p/>
+
+<ol>
+  <li>Encode different traversal strategies for visiting Content Object pointers contained in a Manifest</li>
+</ol>
+<p id="rfc.section.2.p.12">Different Content Object may have different purpose within an application, some being critical and some being less sensitive. For instance, I-frames in an MPEG GOP may be visited first, then P-frames and B-frames may be visited next, depending upon the network conditions. Similarly, in a scalable video encoding, the base layer may be visited first by the traversal strategy, then the enhancement layers.</p>
+<p id="rfc.section.2.p.13">The manifest should be able to encode this traversal strategy to help both the application function properly under the current network conditions, and potentially, as in the case of rate adaptation for scalable video streaming, to help the network deal with congestion events.</p>
+<p/>
+
+<ol>
+  <li>Support Content Object personalization and internationalization</li>
+</ol>
+<p id="rfc.section.2.p.15">This use case for the manifest enables contextualization of the content, by grouping different objects together depending on the location of the user, the copy of the manifest, or on some other information. For instance, a manifest under a given name stored in a data center in one country may group together picture objects with caption objects in the language of this country; while it would include caption objects in another language in a different country.</p>
+<p/>
+
+<ol>
+  <li>Encode open-ended data streams</li>
+</ol>
+<p id="rfc.section.2.p.17">The manifest could be used as a pointer for data that does not exist yet. It could then optionally include information as to when this data will become available for request.</p>
+<p/>
+
+<ol>
+  <li>Diff-encoded content versioning</li>
+</ol>
+<p id="rfc.section.2.p.19">The manifest can only include the diff of a content object from one version to another.  A consumer can fetch previous versions of a manifest to construct the latest version of the manifest.</p>
+<h1 id="rfc.section.3"><a href="#rfc.section.3">3.</a> <a href="#use-case-classification" id="use-case-classification">Use Case Classification</a></h1>
+<p id="rfc.section.3.p.1">The following table indicates which use cases are applicable to the network and application layers in the ICN stack.</p>
 <table cellpadding="3" cellspacing="0" class="tt full center">
   <thead>
     <tr>
-      <th class="left">ID</th>
-      <th class="left">Network Use Case</th>
-      <th class="left">Application Use Case</th>
+      <th class="left">Use Case ID</th>
+      <th class="left">Network</th>
+      <th class="left">Application</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td class="left">1</td>
-      <td class="left">Amortize verification cost of chunks</td>
-      <td class="left">Amortize verification cost of chunks</td>
+      <td class="left">X</td>
+      <td class="left">X</td>
     </tr>
     <tr>
       <td class="left">2</td>
-      <td class="left">Support network-layer prefetching</td>
-      <td class="left"/>
+      <td class="left">X</td>
+      <td class="left">X</td>
     </tr>
     <tr>
       <td class="left">3</td>
-      <td class="left">Store only Content Object metadata (?)</td>
-      <td class="left">Store only Content Object metadata</td>
+      <td class="left">X</td>
+      <td class="left">X</td>
     </tr>
     <tr>
       <td class="left">4</td>
-      <td class="left">Support named and nameless Content Objects</td>
-      <td class="left">Support named and nameless Content Objects</td>
+      <td class="left">X</td>
+      <td class="left">X</td>
     </tr>
     <tr>
       <td class="left">5</td>
-      <td class="left"/>
-      <td class="left">Efficiently encode sparse Content Object files with possible compression</td>
+      <td class="left">X</td>
+      <td class="left">X</td>
     </tr>
     <tr>
       <td class="left">6</td>
-      <td class="left">Provide alternate sources for a Content Object data blocks (i.e., give more than one routing hint)</td>
       <td class="left"/>
+      <td class="left">X</td>
     </tr>
     <tr>
       <td class="left">7</td>
-      <td class="left">Serve as thunks in Named Function Networking</td>
-      <td class="left">Serve as thunks in Named Function Networking</td>
+      <td class="left"/>
+      <td class="left">X</td>
     </tr>
     <tr>
       <td class="left">8</td>
-      <td class="left">Describe the namespace of a particular Content Object</td>
-      <td class="left">Describe the namespace of a particular Content Object</td>
+      <td class="left">X</td>
+      <td class="left">X</td>
     </tr>
     <tr>
       <td class="left">9</td>
-      <td class="left">Store authenticated denial namespace descriptions (see above)</td>
-      <td class="left">Store authenticated denial namespace descriptions (see above)</td>
-    </tr>
-    <tr>
-      <td class="left">10</td>
-      <td class="left">Encode different content locator strategies</td>
-      <td class="left">Encode different traversal strategies for visiting Content Object pointers contained in a Manifest</td>
-    </tr>
-    <tr>
-      <td class="left">11</td>
       <td class="left"/>
-      <td class="left">Encode parallel forks (file resource forks or property lists associated with a Content Object)</td>
-    </tr>
-    <tr>
-      <td class="left">12</td>
-      <td class="left"/>
-      <td class="left">Support Content Object personalization and internationalization</td>
-    </tr>
-    <tr>
-      <td class="left">13</td>
-      <td class="left">Group related data together (independent application datum that are typically fetched as a whole)</td>
-      <td class="left">Group related data together (e.g., for Web page content)</td>
-    </tr>
-    <tr>
-      <td class="left">14</td>
-      <td class="left">Provide transport-layer information or aid transport protocols</td>
-      <td class="left"/>
-    </tr>
-    <tr>
-      <td class="left">15</td>
-      <td class="left">Facilitate Content Object, service, or entity discovery</td>
-      <td class="left"/>
-    </tr>
-    <tr>
-      <td class="left">16</td>
-      <td class="left">Enable content deletion in routers/forwarders</td>
-      <td class="left"/>
-    </tr>
-    <tr>
-      <td class="left">17</td>
-      <td class="left"/>
-      <td class="left">Embed authentication key information (e.g., key catalogs)</td>
-    </tr>
-    <tr>
-      <td class="left">18</td>
-      <td class="left"/>
-      <td class="left">Serve as a database cursor</td>
-    </tr>
-    <tr>
-      <td class="left">19</td>
-      <td class="left"/>
-      <td class="left">Turn the manifest data structure into a block chain (tamperproof open list of records)</td>
-    </tr>
-    <tr>
-      <td class="left">20</td>
-      <td class="left"/>
-      <td class="left">Be used by or as a (decentralized) trusted timestamping service</td>
-    </tr>
-    <tr>
-      <td class="left">21</td>
-      <td class="left"/>
-      <td class="left">Backend storage for a control versioning system, GitHub style</td>
-    </tr>
-    <tr>
-      <td class="left">22</td>
-      <td class="left"/>
-      <td class="left">Encode open-ended data streams (i.e., manifests may point to data not yet in existence)</td>
-    </tr>
-    <tr>
-      <td class="left">23</td>
-      <td class="left"/>
-      <td class="left">Diff-encoded content versioning</td>
+      <td class="left">X</td>
     </tr>
   </tbody>
 </table>
-<h1 id="rfc.section.3"><a href="#rfc.section.3">3.</a> <a href="#security-considerations" id="security-considerations">Security Considerations</a></h1>
-<p id="rfc.section.3.p.1">TODO.</p>
-<h1 id="rfc.references"><a href="#rfc.references">4.</a> Normative References</h1>
+<h1 id="rfc.section.4"><a href="#rfc.section.4">4.</a> <a href="#security-considerations" id="security-considerations">Security Considerations</a></h1>
+<p id="rfc.section.4.p.1">TODO.</p>
+<h1 id="rfc.references"><a href="#rfc.references">5.</a> Normative References</h1>
 <table>
   <tbody>
     <tr>
@@ -634,7 +624,7 @@
 </div><div class="avoidbreak">
   <address class="vcard">
 	<span class="vcardline">
-	  <span class="fn">Cerdic Westphal</span> 
+	  <span class="fn">Cedric Westphal</span> 
 	  <span class="n hidden">
 		<span class="family-name">Westphal</span>
 	  </span>

@@ -21,7 +21,7 @@ author:
     email: christian.tschudin@unibas.ch
  -
     ins: C. Westphal
-    name: Cerdic Westphal
+    name: Cedric Westphal
     org: Huawei
     email: Cedric.Westphal@huawei.com
  -
@@ -56,38 +56,102 @@ illustrate several network and application use cases in which they might be used
 on top of the base FLIC manifest {{FLIC}}. This document is not intended
 to specify a standard design.
 
-# Use Cases
+# Use Case Descriptions
 
 In this section we enumerate possible use cases that could be addressed by advanced
 Manifests. This list is not exhaustive, and is open to modification and extension
 from the community.
 
+1. Amortize verification cost of chunks
 
-| 1 | Amortize verification cost of chunks| NET APP
-| 2 | Support network-layer prefetching | NET APP
-| 13 | Group related data together (independent application datum that are typically fetched as a whole) -> directory | APP NET (to hint at caching strategies)
-| 3 | Store only Content Object metadata | NET APP  (offload metadata in content objects to parent manifest, authenticated denial data, facilitate service or entity discovery, embed authentication key information (e.g., key catalogs))
-| 4 | Support named and nameless Content Objects | NET APP
-| 6 | Provide alternate sources for a Content Object data blocks (i.e., give more than one routing hint) |
-| 8 | Describe the namespace of a particular Content Object | APP (describe different names and related names for this content object)
-Encode different content locator strategies | NET APP
-Encode different traversal strategies for visiting Content Object pointers contained in a Manifest | APP
-Support Content Object personalization and internationalization | APP (same name but the content depends on location and identity, for example)
-| 22 | Encode open-ended data streams (i.e., manifests may point to data not yet in existence) | APP NET
-| 23 | Diff-encoded content versioning | APP
+2. Support network-layer prefetching
 
+3. Store Content Object metadata
 
+Metadata that is common to multiple content objects can be offloaded to a parent
+manifest. Alternatively, the manifest can carry only metadata instead of pointers
+to actual data. Examples of metadata include:
 
+- Offload metadata in content objects to parent manifest
+- Authenticated denial information
+- Service or entity discovery information
+- Embedded authentication key information (e.g., key catalogs)
+- The namespace of a Content Object (e.g., names of related content)
 
-| 21 | | Backend storage for a control versioning system, GitHub style |
-| 19 | Turn the manifest data structure into a block chain (tamperproof open list of records) or Be used by or as a (decentralized) trusted timestamping service | APP ()
-| 14 | Provide transport-layer information or aid transport protocols | (provide windowing information or suggestions about downstream traffic) APP NET (friendliness)
-| 5 | Efficiently encode sparse Content Object files with possible compression |
-| 7 | Serve as thunks in Named Function Networking |
-| 18 | | Serve as a database cursor |
+4. Group related data together
 
+A manifest can combine data from multiple sources into one combined object. One such
+example would be a webpage, containing images from an image repository, text from
+another one, cookies and tracking objects from a third party and advertisement from
+another provider for such content. The overall name in the manifest would be that of
+the webpage, say www.cnn.com/frontpage but the manifest would group all the data together.
 
+The grouping of object together may guide caching policies at the network level, if
+caching is allowable. For instance, the objects associated into a common group could
+be cached under the same rule.
 
+5. Encode different content locator strategies
+
+A possible use case is to prioritize potential locators and therefore to embed a
+content locator strategy into the manifest. If multiple copies of the content
+corresponding to the manifest exist, the manifest could present a selection strategy.
+Say, try this copy first, then this one, then this one, etc. Other strategies are
+possible, say selecting chunks from different locations, etc.
+
+The strategy may refer to different network locations, therefore offering different
+network paths to the objects. The different network paths have of course implication
+on the application layer as well.
+
+6. Encode different traversal strategies for visiting Content Object pointers
+contained in a Manifest
+
+Different Content Object may have different purpose within an application, some being
+critical and some being less sensitive. For instance, I-frames in an MPEG GOP may be
+visited first, then P-frames and B-frames may be visited next, depending upon the network
+conditions. Similarly, in a scalable video encoding, the base layer may be visited
+first by the traversal strategy, then the enhancement layers.
+
+The manifest should be able to encode this traversal strategy to help both the
+application function properly under the current network conditions, and potentially,
+as in the case of rate adaptation for scalable video streaming, to help the network
+deal with congestion events.
+
+7. Support Content Object personalization and internationalization
+
+This use case for the manifest enables contextualization of the content, by grouping
+different objects together depending on the location of the user, the copy of the
+manifest, or on some other information. For instance, a manifest under a given name
+stored in a data center in one country may group together picture objects with
+caption objects in the language of this country; while it would include caption
+objects in another language in a different country.
+
+8. Encode open-ended data streams
+
+The manifest could be used as a pointer for data that does not exist yet. It could
+then optionally include information as to when this data will become available
+for request.
+
+9. Diff-encoded content versioning
+
+The manifest can only include the diff of a content object from one version to another.
+A consumer can fetch previous versions of a manifest to construct the latest version
+of the manifest.
+
+# Use Case Classification
+
+The following table indicates which use cases are applicable to the network
+and application layers in the ICN stack.
+
+| Use Case ID | Network | Application |
+| 1 | X | X |
+| 2 | X | X |
+| 3 | X | X |
+| 4 | X | X |
+| 5 | X | X |
+| 6 |   | X |
+| 7 |   | X |
+| 8 | X | X |
+| 9 |   | X |
 
 Security Considerations
 =======================

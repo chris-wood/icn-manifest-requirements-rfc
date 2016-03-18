@@ -20,7 +20,7 @@
         <email>christian.tschudin@unibas.ch</email>
       </address>
     </author>
-    <author initials="C." surname="Westphal" fullname="Cerdic Westphal">
+    <author initials="C." surname="Westphal" fullname="Cedric Westphal">
       <organization>Huawei</organization>
       <address>
         <email>Cedric.Westphal@huawei.com</email>
@@ -62,85 +62,138 @@ on top of the base FLIC manifest <xref target="FLIC"/>. This document is not int
 to specify a standard design.</t>
 
 </section>
-<section anchor="use-cases" title="Use Cases">
+<section anchor="use-case-descriptions" title="Use Case Descriptions">
 
-<t>In this section we enumerate possible use cases that could be addressed by advanced 
-Manifests. This list is not exhaustive, and is open to modification and extension 
+<t>In this section we enumerate possible use cases that could be addressed by advanced
+Manifests. This list is not exhaustive, and is open to modification and extension
 from the community.</t>
 
+<t><list style="numbers">
+  <t>Amortize verification cost of chunks</t>
+  <t>Support network-layer prefetching</t>
+  <t>Store Content Object metadata</t>
+</list></t>
+
+<t>Metadata that is common to multiple content objects can be offloaded to a parent
+manifest. Alternatively, the manifest can carry only metadata instead of pointers
+to actual data. Examples of metadata include:</t>
+
+<t><list style="symbols">
+  <t>Offload metadata in content objects to parent manifest</t>
+  <t>Authenticated denial information</t>
+  <t>Service or entity discovery information</t>
+  <t>Embedded authentication key information (e.g., key catalogs)</t>
+  <t>The namespace of a Content Object (e.g., names of related content)</t>
+</list></t>
+
+<t><list style="numbers">
+  <t>Group related data together</t>
+</list></t>
+
+<t>A manifest can combine data from multiple sources into one combined object. One such
+example would be a webpage, containing images from an image repository, text from
+another one, cookies and tracking objects from a third party and advertisement from
+another provider for such content. The overall name in the manifest would be that of
+the webpage, say www.cnn.com/frontpage but the manifest would group all the data together.</t>
+
+<t>The grouping of object together may guide caching policies at the network level, if
+caching is allowable. For instance, the objects associated into a common group could
+be cached under the same rule.</t>
+
+<t><list style="numbers">
+  <t>Encode different content locator strategies</t>
+</list></t>
+
+<t>A possible use case is to prioritize potential locators and therefore to embed a
+content locator strategy into the manifest. If multiple copies of the content
+corresponding to the manifest exist, the manifest could present a selection strategy.
+Say, try this copy first, then this one, then this one, etc. Other strategies are
+possible, say selecting chunks from different locations, etc.</t>
+
+<t>The strategy may refer to different network locations, therefore offering different
+network paths to the objects. The different network paths have of course implication
+on the application layer as well.</t>
+
+<t><list style="numbers">
+  <t>Encode different traversal strategies for visiting Content Object pointers
+contained in a Manifest</t>
+</list></t>
+
+<t>Different Content Object may have different purpose within an application, some being
+critical and some being less sensitive. For instance, I-frames in an MPEG GOP may be
+visited first, then P-frames and B-frames may be visited next, depending upon the network
+conditions. Similarly, in a scalable video encoding, the base layer may be visited
+first by the traversal strategy, then the enhancement layers.</t>
+
+<t>The manifest should be able to encode this traversal strategy to help both the
+application function properly under the current network conditions, and potentially,
+as in the case of rate adaptation for scalable video streaming, to help the network
+deal with congestion events.</t>
+
+<t><list style="numbers">
+  <t>Support Content Object personalization and internationalization</t>
+</list></t>
+
+<t>This use case for the manifest enables contextualization of the content, by grouping
+different objects together depending on the location of the user, the copy of the
+manifest, or on some other information. For instance, a manifest under a given name
+stored in a data center in one country may group together picture objects with
+caption objects in the language of this country; while it would include caption
+objects in another language in a different country.</t>
+
+<t><list style="numbers">
+  <t>Encode open-ended data streams</t>
+</list></t>
+
+<t>The manifest could be used as a pointer for data that does not exist yet. It could
+then optionally include information as to when this data will become available
+for request.</t>
+
+<t><list style="numbers">
+  <t>Diff-encoded content versioning</t>
+</list></t>
+
+<t>The manifest can only include the diff of a content object from one version to another.
+A consumer can fetch previous versions of a manifest to construct the latest version
+of the manifest.</t>
+
+</section>
+<section anchor="use-case-classification" title="Use Case Classification">
+
+<t>The following table indicates which use cases are applicable to the network
+and application layers in the ICN stack.</t>
+
 <texttable>
-      <ttcol align='left'>ID</ttcol>
-      <ttcol align='left'>Network Use Case</ttcol>
-      <ttcol align='left'>Application Use Case</ttcol>
+      <ttcol align='left'>Use Case ID</ttcol>
+      <ttcol align='left'>Network</ttcol>
+      <ttcol align='left'>Application</ttcol>
       <c>1</c>
-      <c>Amortize verification cost of chunks</c>
-      <c>Amortize verification cost of chunks</c>
+      <c>X</c>
+      <c>X</c>
       <c>2</c>
-      <c>Support network-layer prefetching</c>
-      <c>&#160;</c>
+      <c>X</c>
+      <c>X</c>
       <c>3</c>
-      <c>Store only Content Object metadata (?)</c>
-      <c>Store only Content Object metadata</c>
+      <c>X</c>
+      <c>X</c>
       <c>4</c>
-      <c>Support named and nameless Content Objects</c>
-      <c>Support named and nameless Content Objects</c>
+      <c>X</c>
+      <c>X</c>
       <c>5</c>
-      <c>&#160;</c>
-      <c>Efficiently encode sparse Content Object files with possible compression</c>
+      <c>X</c>
+      <c>X</c>
       <c>6</c>
-      <c>Provide alternate sources for a Content Object data blocks (i.e., give more than one routing hint)</c>
       <c>&#160;</c>
+      <c>X</c>
       <c>7</c>
-      <c>Serve as thunks in Named Function Networking</c>
-      <c>Serve as thunks in Named Function Networking</c>
+      <c>&#160;</c>
+      <c>X</c>
       <c>8</c>
-      <c>Describe the namespace of a particular Content Object</c>
-      <c>Describe the namespace of a particular Content Object</c>
+      <c>X</c>
+      <c>X</c>
       <c>9</c>
-      <c>Store authenticated denial namespace descriptions (see above)</c>
-      <c>Store authenticated denial namespace descriptions (see above)</c>
-      <c>10</c>
-      <c>Encode different content locator strategies</c>
-      <c>Encode different traversal strategies for visiting Content Object pointers contained in a Manifest</c>
-      <c>11</c>
       <c>&#160;</c>
-      <c>Encode parallel forks (file resource forks or property lists associated with a Content Object)</c>
-      <c>12</c>
-      <c>&#160;</c>
-      <c>Support Content Object personalization and internationalization</c>
-      <c>13</c>
-      <c>Group related data together (independent application datum that are typically fetched as a whole)</c>
-      <c>Group related data together (e.g., for Web page content)</c>
-      <c>14</c>
-      <c>Provide transport-layer information or aid transport protocols</c>
-      <c>&#160;</c>
-      <c>15</c>
-      <c>Facilitate Content Object, service, or entity discovery</c>
-      <c>&#160;</c>
-      <c>16</c>
-      <c>Enable content deletion in routers/forwarders</c>
-      <c>&#160;</c>
-      <c>17</c>
-      <c>&#160;</c>
-      <c>Embed authentication key information (e.g., key catalogs)</c>
-      <c>18</c>
-      <c>&#160;</c>
-      <c>Serve as a database cursor</c>
-      <c>19</c>
-      <c>&#160;</c>
-      <c>Turn the manifest data structure into a block chain (tamperproof open list of records)</c>
-      <c>20</c>
-      <c>&#160;</c>
-      <c>Be used by or as a (decentralized) trusted timestamping service</c>
-      <c>21</c>
-      <c>&#160;</c>
-      <c>Backend storage for a control versioning system, GitHub style</c>
-      <c>22</c>
-      <c>&#160;</c>
-      <c>Encode open-ended data streams (i.e., manifests may point to data not yet in existence)</c>
-      <c>23</c>
-      <c>&#160;</c>
-      <c>Diff-encoded content versioning</c>
+      <c>X</c>
 </texttable>
 
 </section>
