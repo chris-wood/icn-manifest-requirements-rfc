@@ -475,57 +475,14 @@
 <ol>
   <li>Amortize verification cost of chunks</li>
   <li>Support network-layer prefetching</li>
-  <li>Store Content Object metadata</li>
+  <li>Store Content Object metadata  <br/><br/> Metadata that is common to multiple content objects can be offloaded to a parent manifest. Alternatively, the manifest can carry only metadata instead of pointers to actual data. Examples of metadata include:  <ul><li>Offload metadata in content objects to parent manifest</li><li>Authenticated denial information</li><li>Service or entity discovery information</li><li>Embedded authentication key information (e.g., key catalogs)</li><li>The namespace of a Content Object (e.g., names of related content)</li></ul></li>
+  <li>Group related data together  <br/><br/> A manifest can combine data from multiple sources into one combined object. One such example would be a webpage, containing images from an image repository, text from another one, cookies and tracking objects from a third party and advertisement from another provider for such content. The overall name in the manifest would be that of the webpage, say www.cnn.com/frontpage but the manifest would group all the data together.  <br/><br/> The grouping of object together may guide caching policies at the network level, if caching is allowable. For instance, the objects associated into a common group could be cached under the same rule.</li>
+  <li>Encode different content locator strategies  <br/><br/> A possible use case is to prioritize potential locators and therefore to embed a content locator strategy into the manifest. If multiple copies of the content corresponding to the manifest exist, the manifest could present a selection strategy.  Say, try this copy first, then this one, then this one, etc. Other strategies are possible, say selecting chunks from different locations, etc.  <br/><br/> The strategy may refer to different network locations, therefore offering different network paths to the objects. The different network paths have of course implication on the application layer as well.</li>
+  <li>Encode different traversal strategies for visiting Content Object pointers contained in a Manifest  <br/><br/> Different Content Object may have different purpose within an application, some being critical and some being less sensitive. For instance, I-frames in an MPEG GOP may be visited first, then P-frames and B-frames may be visited next, depending upon the network conditions. Similarly, in a scalable video encoding, the base layer may be visited first by the traversal strategy, then the enhancement layers.  <br/><br/> The manifest should be able to encode this traversal strategy to help both the application function properly under the current network conditions, and potentially, as in the case of rate adaptation for scalable video streaming, to help the network deal with congestion events.</li>
+  <li>Support Content Object personalization and internationalization  <br/><br/> This use case for the manifest enables contextualization of the content, by grouping different objects together depending on the location of the user, the copy of the manifest, or on some other information. For instance, a manifest under a given name stored in a data center in one country may group together picture objects with caption objects in the language of this country; while it would include caption objects in another language in a different country.</li>
+  <li>Encode open-ended data streams  <br/><br/> The manifest could be used as a pointer for data that does not exist yet. It could then optionally include information as to when this data will become available for request.</li>
+  <li>Diff-encoded content versioning  <br/><br/> The manifest can only include the diff of a content object from one version to another.  A consumer can fetch previous versions of a manifest to construct the latest version of the manifest.</li>
 </ol>
-<p id="rfc.section.2.p.3">Metadata that is common to multiple content objects can be offloaded to a parent manifest. Alternatively, the manifest can carry only metadata instead of pointers to actual data. Examples of metadata include:</p>
-<p/>
-
-<ul>
-  <li>Offload metadata in content objects to parent manifest</li>
-  <li>Authenticated denial information</li>
-  <li>Service or entity discovery information</li>
-  <li>Embedded authentication key information (e.g., key catalogs)</li>
-  <li>The namespace of a Content Object (e.g., names of related content)</li>
-</ul>
-<p/>
-
-<ol>
-  <li>Group related data together</li>
-</ol>
-<p id="rfc.section.2.p.6">A manifest can combine data from multiple sources into one combined object. One such example would be a webpage, containing images from an image repository, text from another one, cookies and tracking objects from a third party and advertisement from another provider for such content. The overall name in the manifest would be that of the webpage, say www.cnn.com/frontpage but the manifest would group all the data together.</p>
-<p id="rfc.section.2.p.7">The grouping of object together may guide caching policies at the network level, if caching is allowable. For instance, the objects associated into a common group could be cached under the same rule.</p>
-<p/>
-
-<ol>
-  <li>Encode different content locator strategies</li>
-</ol>
-<p id="rfc.section.2.p.9">A possible use case is to prioritize potential locators and therefore to embed a content locator strategy into the manifest. If multiple copies of the content corresponding to the manifest exist, the manifest could present a selection strategy.  Say, try this copy first, then this one, then this one, etc. Other strategies are possible, say selecting chunks from different locations, etc.</p>
-<p id="rfc.section.2.p.10">The strategy may refer to different network locations, therefore offering different network paths to the objects. The different network paths have of course implication on the application layer as well.</p>
-<p/>
-
-<ol>
-  <li>Encode different traversal strategies for visiting Content Object pointers contained in a Manifest</li>
-</ol>
-<p id="rfc.section.2.p.12">Different Content Object may have different purpose within an application, some being critical and some being less sensitive. For instance, I-frames in an MPEG GOP may be visited first, then P-frames and B-frames may be visited next, depending upon the network conditions. Similarly, in a scalable video encoding, the base layer may be visited first by the traversal strategy, then the enhancement layers.</p>
-<p id="rfc.section.2.p.13">The manifest should be able to encode this traversal strategy to help both the application function properly under the current network conditions, and potentially, as in the case of rate adaptation for scalable video streaming, to help the network deal with congestion events.</p>
-<p/>
-
-<ol>
-  <li>Support Content Object personalization and internationalization</li>
-</ol>
-<p id="rfc.section.2.p.15">This use case for the manifest enables contextualization of the content, by grouping different objects together depending on the location of the user, the copy of the manifest, or on some other information. For instance, a manifest under a given name stored in a data center in one country may group together picture objects with caption objects in the language of this country; while it would include caption objects in another language in a different country.</p>
-<p/>
-
-<ol>
-  <li>Encode open-ended data streams</li>
-</ol>
-<p id="rfc.section.2.p.17">The manifest could be used as a pointer for data that does not exist yet. It could then optionally include information as to when this data will become available for request.</p>
-<p/>
-
-<ol>
-  <li>Diff-encoded content versioning</li>
-</ol>
-<p id="rfc.section.2.p.19">The manifest can only include the diff of a content object from one version to another.  A consumer can fetch previous versions of a manifest to construct the latest version of the manifest.</p>
 <h1 id="rfc.section.3"><a href="#rfc.section.3">3.</a> <a href="#use-case-classification" id="use-case-classification">Use Case Classification</a></h1>
 <p id="rfc.section.3.p.1">The following table indicates which use cases are applicable to the network and application layers in the ICN stack.</p>
 <table cellpadding="3" cellspacing="0" class="tt full center">

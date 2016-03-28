@@ -71,91 +71,61 @@ from the community.</t>
 <t><list style="numbers">
   <t>Amortize verification cost of chunks</t>
   <t>Support network-layer prefetching</t>
-  <t>Store Content Object metadata</t>
-</list></t>
-
-<t>Metadata that is common to multiple content objects can be offloaded to a parent
-manifest. Alternatively, the manifest can carry only metadata instead of pointers
-to actual data. Examples of metadata include:</t>
-
-<t><list style="symbols">
-  <t>Offload metadata in content objects to parent manifest</t>
-  <t>Authenticated denial information</t>
-  <t>Service or entity discovery information</t>
-  <t>Embedded authentication key information (e.g., key catalogs)</t>
-  <t>The namespace of a Content Object (e.g., names of related content)</t>
-</list></t>
-
-<t><list style="numbers">
-  <t>Group related data together</t>
-</list></t>
-
-<t>A manifest can combine data from multiple sources into one combined object. One such
-example would be a webpage, containing images from an image repository, text from
-another one, cookies and tracking objects from a third party and advertisement from
-another provider for such content. The overall name in the manifest would be that of
-the webpage, say www.cnn.com/frontpage but the manifest would group all the data together.</t>
-
-<t>The grouping of object together may guide caching policies at the network level, if
-caching is allowable. For instance, the objects associated into a common group could
-be cached under the same rule.</t>
-
-<t><list style="numbers">
-  <t>Encode different content locator strategies</t>
-</list></t>
-
-<t>A possible use case is to prioritize potential locators and therefore to embed a
-content locator strategy into the manifest. If multiple copies of the content
-corresponding to the manifest exist, the manifest could present a selection strategy.
-Say, try this copy first, then this one, then this one, etc. Other strategies are
-possible, say selecting chunks from different locations, etc.</t>
-
-<t>The strategy may refer to different network locations, therefore offering different
-network paths to the objects. The different network paths have of course implication
-on the application layer as well.</t>
-
-<t><list style="numbers">
+  <t>Store Content Object metadata  <vspace blankLines='1'/>
+Metadata that is common to multiple content objects can be offloaded to a parent
+ manifest. Alternatively, the manifest can carry only metadata instead of pointers
+ to actual data. Examples of metadata include:  <list style="symbols">
+      <t>Offload metadata in content objects to parent manifest</t>
+      <t>Authenticated denial information</t>
+      <t>Service or entity discovery information</t>
+      <t>Embedded authentication key information (e.g., key catalogs)</t>
+      <t>The namespace of a Content Object (e.g., names of related content)</t>
+    </list></t>
+  <t>Group related data together  <vspace blankLines='1'/>
+A manifest can combine data from multiple sources into one combined object. One such
+ example would be a webpage, containing images from an image repository, text from
+ another one, cookies and tracking objects from a third party and advertisement from
+ another provider for such content. The overall name in the manifest would be that of
+ the webpage, say www.cnn.com/frontpage but the manifest would group all the data together.  <vspace blankLines='1'/>
+The grouping of object together may guide caching policies at the network level, if
+ caching is allowable. For instance, the objects associated into a common group could
+ be cached under the same rule.</t>
+  <t>Encode different content locator strategies  <vspace blankLines='1'/>
+A possible use case is to prioritize potential locators and therefore to embed a
+ content locator strategy into the manifest. If multiple copies of the content
+ corresponding to the manifest exist, the manifest could present a selection strategy.
+ Say, try this copy first, then this one, then this one, etc. Other strategies are
+ possible, say selecting chunks from different locations, etc.  <vspace blankLines='1'/>
+The strategy may refer to different network locations, therefore offering different
+ network paths to the objects. The different network paths have of course implication
+ on the application layer as well.</t>
   <t>Encode different traversal strategies for visiting Content Object pointers
-contained in a Manifest</t>
+contained in a Manifest  <vspace blankLines='1'/>
+Different Content Object may have different purpose within an application, some being
+ critical and some being less sensitive. For instance, I-frames in an MPEG GOP may be
+ visited first, then P-frames and B-frames may be visited next, depending upon the network
+ conditions. Similarly, in a scalable video encoding, the base layer may be visited
+ first by the traversal strategy, then the enhancement layers.  <vspace blankLines='1'/>
+The manifest should be able to encode this traversal strategy to help both the
+ application function properly under the current network conditions, and potentially,
+ as in the case of rate adaptation for scalable video streaming, to help the network
+ deal with congestion events.</t>
+  <t>Support Content Object personalization and internationalization  <vspace blankLines='1'/>
+This use case for the manifest enables contextualization of the content, by grouping
+ different objects together depending on the location of the user, the copy of the
+ manifest, or on some other information. For instance, a manifest under a given name
+ stored in a data center in one country may group together picture objects with
+ caption objects in the language of this country; while it would include caption
+ objects in another language in a different country.</t>
+  <t>Encode open-ended data streams  <vspace blankLines='1'/>
+The manifest could be used as a pointer for data that does not exist yet. It could
+ then optionally include information as to when this data will become available
+ for request.</t>
+  <t>Diff-encoded content versioning  <vspace blankLines='1'/>
+The manifest can only include the diff of a content object from one version to another.
+ A consumer can fetch previous versions of a manifest to construct the latest version
+ of the manifest.</t>
 </list></t>
-
-<t>Different Content Object may have different purpose within an application, some being
-critical and some being less sensitive. For instance, I-frames in an MPEG GOP may be
-visited first, then P-frames and B-frames may be visited next, depending upon the network
-conditions. Similarly, in a scalable video encoding, the base layer may be visited
-first by the traversal strategy, then the enhancement layers.</t>
-
-<t>The manifest should be able to encode this traversal strategy to help both the
-application function properly under the current network conditions, and potentially,
-as in the case of rate adaptation for scalable video streaming, to help the network
-deal with congestion events.</t>
-
-<t><list style="numbers">
-  <t>Support Content Object personalization and internationalization</t>
-</list></t>
-
-<t>This use case for the manifest enables contextualization of the content, by grouping
-different objects together depending on the location of the user, the copy of the
-manifest, or on some other information. For instance, a manifest under a given name
-stored in a data center in one country may group together picture objects with
-caption objects in the language of this country; while it would include caption
-objects in another language in a different country.</t>
-
-<t><list style="numbers">
-  <t>Encode open-ended data streams</t>
-</list></t>
-
-<t>The manifest could be used as a pointer for data that does not exist yet. It could
-then optionally include information as to when this data will become available
-for request.</t>
-
-<t><list style="numbers">
-  <t>Diff-encoded content versioning</t>
-</list></t>
-
-<t>The manifest can only include the diff of a content object from one version to another.
-A consumer can fetch previous versions of a manifest to construct the latest version
-of the manifest.</t>
 
 </section>
 <section anchor="use-case-classification" title="Use Case Classification">

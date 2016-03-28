@@ -63,7 +63,7 @@ Table of Contents
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
    2.  Use Case Descriptions . . . . . . . . . . . . . . . . . . . .   2
    3.  Use Case Classification . . . . . . . . . . . . . . . . . . .   4
-   4.  Security Considerations . . . . . . . . . . . . . . . . . . .   4
+   4.  Security Considerations . . . . . . . . . . . . . . . . . . .   5
    5.  Normative References  . . . . . . . . . . . . . . . . . . . .   5
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   5
 
@@ -87,25 +87,25 @@ Table of Contents
 
    3.  Store Content Object metadata
 
-   Metadata that is common to multiple content objects can be offloaded
-   to a parent manifest.  Alternatively, the manifest can carry only
-   metadata instead of pointers to actual data.  Examples of metadata
-   include:
+       Metadata that is common to multiple content objects can be
+       offloaded to a parent manifest.  Alternatively, the manifest can
+       carry only metadata instead of pointers to actual data.  Examples
+       of metadata include:
 
-   o  Offload metadata in content objects to parent manifest
+       *  Offload metadata in content objects to parent manifest
 
-   o  Authenticated denial information
+       *  Authenticated denial information
 
-   o  Service or entity discovery information
+       *  Service or entity discovery information
 
-   o  Embedded authentication key information (e.g., key catalogs)
+       *  Embedded authentication key information (e.g., key catalogs)
 
-   o  The namespace of a Content Object (e.g., names of related content)
+       *  The namespace of a Content Object (e.g., names of related
+          content)
 
-   1.  Group related data together
+   4.  Group related data together
 
-   A manifest can combine data from multiple sources into one combined
-   object.  One such example would be a webpage, containing images from
+
 
 
 
@@ -114,54 +114,54 @@ Tschudin, et al.        Expires September 1, 2015               [Page 2]
 Internet-Draft             ICNManifestUseCases             February 2015
 
 
-   an image repository, text from another one, cookies and tracking
-   objects from a third party and advertisement from another provider
-   for such content.  The overall name in the manifest would be that of
-   the webpage, say www.cnn.com/frontpage but the manifest would group
-   all the data together.
+       A manifest can combine data from multiple sources into one
+       combined object.  One such example would be a webpage, containing
+       images from an image repository, text from another one, cookies
+       and tracking objects from a third party and advertisement from
+       another provider for such content.  The overall name in the
+       manifest would be that of the webpage, say www.cnn.com/frontpage
+       but the manifest would group all the data together.
 
-   The grouping of object together may guide caching policies at the
-   network level, if caching is allowable.  For instance, the objects
-   associated into a common group could be cached under the same rule.
+       The grouping of object together may guide caching policies at the
+       network level, if caching is allowable.  For instance, the
+       objects associated into a common group could be cached under the
+       same rule.
 
-   1.  Encode different content locator strategies
+   5.  Encode different content locator strategies
 
-   A possible use case is to prioritize potential locators and therefore
-   to embed a content locator strategy into the manifest.  If multiple
-   copies of the content corresponding to the manifest exist, the
-   manifest could present a selection strategy.  Say, try this copy
-   first, then this one, then this one, etc.  Other strategies are
-   possible, say selecting chunks from different locations, etc.
+       A possible use case is to prioritize potential locators and
+       therefore to embed a content locator strategy into the manifest.
+       If multiple copies of the content corresponding to the manifest
+       exist, the manifest could present a selection strategy.  Say, try
+       this copy first, then this one, then this one, etc.  Other
+       strategies are possible, say selecting chunks from different
+       locations, etc.
 
-   The strategy may refer to different network locations, therefore
-   offering different network paths to the objects.  The different
-   network paths have of course implication on the application layer as
-   well.
+       The strategy may refer to different network locations, therefore
+       offering different network paths to the objects.  The different
+       network paths have of course implication on the application layer
+       as well.
 
-   1.  Encode different traversal strategies for visiting Content Object
+   6.  Encode different traversal strategies for visiting Content Object
        pointers contained in a Manifest
 
-   Different Content Object may have different purpose within an
-   application, some being critical and some being less sensitive.  For
-   instance, I-frames in an MPEG GOP may be visited first, then P-frames
-   and B-frames may be visited next, depending upon the network
-   conditions.  Similarly, in a scalable video encoding, the base layer
-   may be visited first by the traversal strategy, then the enhancement
-   layers.
+       Different Content Object may have different purpose within an
+       application, some being critical and some being less sensitive.
+       For instance, I-frames in an MPEG GOP may be visited first, then
+       P-frames and B-frames may be visited next, depending upon the
+       network conditions.  Similarly, in a scalable video encoding, the
+       base layer may be visited first by the traversal strategy, then
+       the enhancement layers.
 
-   The manifest should be able to encode this traversal strategy to help
-   both the application function properly under the current network
-   conditions, and potentially, as in the case of rate adaptation for
-   scalable video streaming, to help the network deal with congestion
-   events.
+       The manifest should be able to encode this traversal strategy to
+       help both the application function properly under the current
+       network conditions, and potentially, as in the case of rate
+       adaptation for scalable video streaming, to help the network deal
+       with congestion events.
 
-   1.  Support Content Object personalization and internationalization
+   7.  Support Content Object personalization and internationalization
 
-   This use case for the manifest enables contextualization of the
-   content, by grouping different objects together depending on the
-   location of the user, the copy of the manifest, or on some other
-   information.  For instance, a manifest under a given name stored in a
-   data center in one country may group together picture objects with
+
 
 
 
@@ -170,20 +170,26 @@ Tschudin, et al.        Expires September 1, 2015               [Page 3]
 Internet-Draft             ICNManifestUseCases             February 2015
 
 
-   caption objects in the language of this country; while it would
-   include caption objects in another language in a different country.
+       This use case for the manifest enables contextualization of the
+       content, by grouping different objects together depending on the
+       location of the user, the copy of the manifest, or on some other
+       information.  For instance, a manifest under a given name stored
+       in a data center in one country may group together picture
+       objects with caption objects in the language of this country;
+       while it would include caption objects in another language in a
+       different country.
 
-   1.  Encode open-ended data streams
+   8.  Encode open-ended data streams
 
-   The manifest could be used as a pointer for data that does not exist
-   yet.  It could then optionally include information as to when this
-   data will become available for request.
+       The manifest could be used as a pointer for data that does not
+       exist yet.  It could then optionally include information as to
+       when this data will become available for request.
 
-   1.  Diff-encoded content versioning
+   9.  Diff-encoded content versioning
 
-   The manifest can only include the diff of a content object from one
-   version to another.  A consumer can fetch previous versions of a
-   manifest to construct the latest version of the manifest.
+       The manifest can only include the diff of a content object from
+       one version to another.  A consumer can fetch previous versions
+       of a manifest to construct the latest version of the manifest.
 
 3.  Use Case Classification
 
@@ -212,12 +218,6 @@ Internet-Draft             ICNManifestUseCases             February 2015
                   | 9           |         | X           |
                   +-------------+---------+-------------+
 
-4.  Security Considerations
-
-   TODO.
-
-
-
 
 
 
@@ -225,6 +225,10 @@ Tschudin, et al.        Expires September 1, 2015               [Page 4]
 
 Internet-Draft             ICNManifestUseCases             February 2015
 
+
+4.  Security Considerations
+
+   TODO.
 
 5.  Normative References
 
@@ -251,10 +255,6 @@ Authors' Addresses
    PARC
 
    Email: christopher.wood@parc.com
-
-
-
-
 
 
 
